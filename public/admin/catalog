@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Panther Lounge Database</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="favicon" href="../assets/lounge_logo_trans.png" />
+  </head>
+
+  <header>
+    <a href="index.html">
+      <img class="logo" src="../assets/lounge_logo_trans.png" />
+      <h1>The Panther Lounge</h1>
+    </a>
+  </header>
+  <body>
+
+    <form id="members">
+      <input type="text" id="itemName" />
+      <input type="text" id="itemType" />
+      <input type="text" id="itemSeries" />
+      <input type="text" id="itemLocation" />
+      <input type="text" id="itemStatus" />
+      <input type="text" id="itemRating" />
+      <input type="text" id="itemClub" />
+      <input type="text" id="itemDescription" />
+      <input type="text" id="itemOther" />
+    </form>
+
+    <input type="file" />
+  </body>
+</html>

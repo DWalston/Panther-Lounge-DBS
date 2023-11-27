@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Panther Lounge Database</title>
+    <script src="script.js"></script>
+    <script src="../script.js"></script>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="favicon" href="../assets/lounge_logo_trans.png" />
+  </head>
+
+  <header>
+    <a href="index.html">
+      <img class="logo" src="../assets/lounge_logo_trans.png" />
+      <h1>The Panther Lounge</h1>
+    </a>
+
+    <form method="get">
+      <!-- send submission to search bar in the catalog section -->
+      <input
+        id="searchQ"
+        type="text"
+        placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..."
+      />
+      <a href="catalog.html">
+        <button onclick="catalog()" type="submit">⌕</button>
+      </a>
+    </form>
+  </header>
+
+  <body onload="seeItem()">
+    <div id="checkedOut">
+      <span> Item ID:</span>
+      <p id="item"></p>
+      <span>Condition: </span>
+      <p id="condition"></p>
+      <span>Checkout Date: </span>
+      <p id="coDate"></p>
+      <label for="library">contact the librarian</label>
+      <select name="library">
+        <option value="anime">Anime Club</option>
+        <option value="fitssff">FITSSFF</option>
+      </select>
+      <input type="submit" value="Submit" />
+      <button onclick="checkIn()">check in this item</button>
+    </div>
+
+    <div id="nullCheckedOut">
+      You currently do not have any items checked out
+    </div>
+  </body>
+</html>

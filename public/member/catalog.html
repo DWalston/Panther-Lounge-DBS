@@ -1,0 +1,95 @@
+<html>
+
+<head>
+   <title>Panther Lounge Database</title>
+   <script src="script.js"></script>
+   <script src="../script.js"></script>
+   <link rel="stylesheet" href="../style.css" />
+   <link rel="favicon" href="../assets/lounge_logo_trans.png" />
+</head>
+
+<header>
+   <!-- logo -->
+   <a href="index.html">
+      <img class="logo" src="../assets/lounge_logo_trans.png" />
+      <h1>The Panther Lounge</h1>
+   </a>
+   <button onclick="boxDispl()">Hide checkboxes</button>
+</header>
+
+<body>
+   <input onkeyup="liveSearch('searchBar','catalog')" id="searchBar" type="text"
+      placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
+
+   <div onload="check()" id="boxes">
+      <input id="itemNameBox" onclick="columnVis('itemName')" type="checkbox" />
+      <label for="itemNameBox"> Name </label>
+      <input id="itemTypeBox" onclick="columnVis('itemType')" type="checkbox" />
+      <label for="itemTypeBox"> Type </label>
+      <input id="itemSeriesBox" onclick="columnVis('itemSeries')" type="checkbox" />
+      <label for="itemSeriesBox"> Series </label>
+      <input id="itemLocationBox" onclick="columnVis('itemLocation')" type="checkbox" />
+      <label for="itemLocationBox"> Shelf &#38; Section </label>
+      <input id="itemStatusBox" onclick="columnVis('itemStatus')" type="checkbox" />
+      <label for="itemStatusBox"> Status </label>
+      <input id="itemRatingBox" onclick="columnVis('itemRating')" type="checkbox" />
+      <label for="itemRatingBox"> Rating </label>
+      <input id="itemClubBox" onclick="columnVis('itemClub')" type="checkbox" />
+      <label for="itemClubBox"> Club </label>
+      <input id="itemDescriptionBox" onclick="columnVis('itemDescription')" type="checkbox" />
+      <label for="itemDescriptionBox"> Description </label>
+      <input id="itemOtherBox" onclick="columnVis('itemOther')" type="checkbox" />
+      <label for="itemOtherBox"> Other </label>
+      <input id="itemCheckoutBox" onclick="columnVis('itemCheckout')" type="checkbox" />
+      <label for="itemCheckoutBox"> Checkout Information </label>
+   </div>
+
+   <table id="catalog">
+      <colgroup>
+         <col id="itemName" span="1" />
+         <col id="itemType" span="1" />
+         <col id="itemSeries" span="1" />
+         <col id="itemLocation" span="1" />
+         <col id="itemStatus" span="1" />
+         <col id="itemRating" span="1" />
+         <col id="itemClub" span="1" />
+         <col id="itemDescription" span="1" />
+         <col id="itemOther" span="1" />
+         <col id="itemCheckout" span="2" />
+      </colgroup>
+      <tr id="header">
+         <th>Name</th>
+         <th>Type</th>
+         <th>Series</th>
+         <th>Shelf &#38; Section</th>
+         <th>Status</th>
+         <th>Rating</th>
+         <th>Club</th>
+         <th>Description</th>
+         <!-- remember to add specific information for certain item types -->
+         <th>Other</th>
+         <th>ID</th>
+         <th>Checkout</th>
+      </tr>
+      <tr>
+         <td>Lord of the Rings</td>
+         <td>Book</td>
+         <td>Series</td>
+         <td>Shelf</td>
+         <td>Status</td>
+         <td>Rating</td>
+         <td>FITSSFF</td>
+         <td>Description</td>
+         <!-- remember to add specific information for certain item types -->
+         <td>Other</td>
+         <td>
+            <button onclick="copyThis(42069)">42069</button>
+         </td>
+         <td>
+            <button onclick="checkout(42069)">Available for checkout</button>
+         </td>
+      </tr>
+   </table>
+</body>
+
+</html>

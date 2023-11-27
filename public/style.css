@@ -1,0 +1,163 @@
+a {
+  font-weight: bold;
+  margin: 10px;
+  padding: 5px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: black;
+}
+
+body {
+  background-color: gainsboro;
+  display: inline-block;
+  font-family: "Courier New", Courier, monospace;
+  margin: 0px;
+  width: 100%;
+}
+
+button {
+  background-color: lightcoral;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 5px 5px;
+  cursor: pointer;
+  height: 25px;
+  margin: 5px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: none;
+  box-shadow: none;
+}
+
+div {
+  background-color: lightcoral;
+  border-radius: 5px;
+  box-shadow: 5px 5px;
+  display: block;
+  margin: 10px;
+  padding: 25px;
+  position: relative;
+}
+
+form {
+  margin: 10px;
+  padding: 5px;
+}
+
+header {
+  background-color: lightgoldenrodyellow;
+  padding: 25px;
+  width: 100%;
+}
+
+h1 {
+  display: inline;
+  margin: 10px;
+  padding: 5px;
+}
+
+input {
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+p {
+  border-radius: 5px;
+  font-size: medium;
+  margin: 10px;
+  padding: 5px;
+}
+
+table {
+  width: 100%;
+  margin: 25px;
+}
+
+th {
+  background-color: lightyellow;
+  border: 1px;
+  border-bottom-style: 10px dotted;
+  border-right-style: 10px dotted;
+  padding: 10px;
+  text-align: left;
+}
+
+select {
+  border: none;
+  border-radius: 5px;
+}
+
+.halfRight {
+  float: right;
+  top: -10px;
+  width: 45%;
+}
+
+.halfLeft {
+  width: 35%;
+}
+
+.links {
+  float: right;
+  top: -125px;
+  width: 25%;
+}
+
+.links a {
+  display: block;
+}
+
+.logo {
+  height: 75px;
+  position: relative;
+  top: 30px;
+  width: 75px;
+}
+
+#itemType,
+#itemSeries,
+#itemLocation,
+#itemStatus,
+#itemRating,
+#itemClub,
+#itemOther,
+#itemCheckout {
+  visibility: collapse;
+}
+
+#nav {
+  display: none;
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+#searchBar {
+  display:block;
+  position: fixed;
+  width: 75%;
+  z-index: 1;
+}
+
+#searchQ {
+  box-shadow: 5px 5px;
+  width: 75%;
+}
+
+#searchQ:active {
+  box-shadow: none;
+}

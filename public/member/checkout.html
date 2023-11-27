@@ -1,0 +1,40 @@
+<html>
+
+<head>
+   <title>Panther Lounge Database</title>
+   <script src="script.js"></script>
+   <script src="../script.js"></script>
+   <link rel="stylesheet" href="../style.css" />
+   <link rel="favicon" href="../assets/lounge_logo_trans.png" />
+</head>
+
+<header>
+   <a href="index.html">
+      <img class="logo" src="../assets/lounge_logo_trans.png" />
+      <h1>The Panther Lounge</h1>
+   </a>
+
+   <form method="get">
+      <!-- send submission to search bar in the catalog section -->
+      <input id="searchQ" type="text"
+         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
+      <a href="catalog.html">
+         <button onclick="catalog()" type="submit">⌕</button>
+      </a>
+   </form>
+</header>
+
+<body onload="checkout(number)">
+   <span>Username:</span>
+   <p id="username"></p>
+   <span> Item ID:</span>
+   <p id="item"></p>
+   <span>Checkout Date: </span>
+   <p id="coDate"></p>
+   <button>
+      By submitting this form, I, <span id="name"></span> agree to checkout <span id="itemName"></span> that is
+      currently in <span id="condition"></span> condition and return it by <span id="ciDate"></span>.
+   </button>
+</body>
+
+</html>
