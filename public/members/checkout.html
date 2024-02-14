@@ -1,0 +1,45 @@
+<html>
+
+<head>
+   <title>Panther Lounge Database</title>
+   <script src="script.js"></script>
+   <script src="../script.js"></script>
+   <link rel="stylesheet" href="../style.css" />
+   <link rel="favicon" href="../assets/lounge_logo_trans.png" />
+</head>
+
+<header>
+   <a href="index.html">
+      <img class="logo" src="../assets/lounge_logo_trans.png" />
+      <h1>The Panther Lounge</h1>
+   </a>
+
+   <form>
+      <!-- send submission to search bar in the catalog section -->
+      <input id="searchQ" type="text"
+         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
+      <a href="catalog.html">
+         <button onclick="catalog()" type="submit">⌕</button>
+      </a>
+   </form>
+</header>
+
+<body onload="name(), item(), dates()">
+   <div class="halfleft">
+      <input placeholder="Item ID" id="itemID" />
+   </div>
+
+   <div>
+      By submitting this form, I, <input id="name" />, also known as,
+      <input readonly id="username" />, agree to checkout
+      <input readonly id="itemName" />, which is in
+      <input readonly id="condition" /> condition on
+      <input readonly type="date" id="coDate" />, and will return it by
+      <input readonly type="date" id="ciDate" />.
+   </div>
+
+   capiche?
+   <button>capiche</button>
+</body>
+
+</html>

@@ -23,14 +23,24 @@ public class BaseController {
     {
         return "index";
     }
-
+    
+    
+    @GetMapping("/login")
+    public String login()
+    {
+	return "index";
+    }
+	@GetMapping("/logout")
+	public String logout()
+	{
+		return "index";
+	}
+    
     @GetMapping("/checkout")
-    public String checkout(Model model) {
-        checkoutForm test = new checkoutForm();
-        test.setItemID("35");
-        test.setMemberID("4");
-        model.addAttribute("request", test);
-        return "checkout";
+    public String checkout() {
+       checkoutForm test = new checkoutForm();
+       model.addAttribute("request", test);
+       return "checkout";
     }
     
     @PostMapping("/checkout")

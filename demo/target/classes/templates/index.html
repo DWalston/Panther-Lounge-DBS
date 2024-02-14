@@ -1,97 +1,58 @@
 <!DOCTYPE html> 
 
-<html> 
+<html>
 
 <head>
-   <title>
-      Panther Lounge Database
-   </title>
-   <script src="script.js">
-   </script>
-   <link rel="stylesheet" href="style.css">
-   <link rel="favicon" th:href="@{/images/lounge_logo_trans.png}">
+   <title>Panther Lounge Database</title>
+   <script src="script.js"></script>
+   <link rel="stylesheet" href="style.css" />
+   <link rel="favicon" href="../assets/lounge_logo_trans.png" />
 </head>
 
-<header>
-   <a href="index">
-      <img class="logo" th:src="@{/images/lounge_logo_trans.png}" /> 
-      <h1>
-         The Panther Lounge
-      </h1>
-   </a>
-   <br>
-
-   <div class="links">
-      <input id="userName" type="text" placeholder="username">
-      <input id="pass" type="text" placeholder="password">
-      <a href="signin">
-         <button type="submit">
-            Sign in
-         </button>
-         <br>
-      </a>
-      <a href="https://linktr.ee/fitssff">
-         FITSSFF's Linktree
-      </a>
-
-      <a href="https://linktr.ee/floridatechanimeclub
-   ">
-         Anime Club's Linktree
-      </a>
-
-      <a href="checkout">
-         Check out an Item
-      </a>
-   </div>
-
-   <form>
-      <!-- send submission to search bar in the catalog section -->
-      <input id="searchQ" type="text"
-         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards...">
-      <a href="catalog">
-         <button type="submit">
-            ⌕
-         </button>
-      </a>
-   </form>
+<header id="login">
+      <span th:if="${param.error}">
+			Invalid username and password.</span>
+	  <span sec:authorize="!isAuthenticated()">
+      <form th:action="@{/login}" method="post">
+      <input name="username" type="text" placeholder="username"/>
+      <input name="password" type="password" autocomplete="off" placeholder="password"/>
+      <input type="submit" value = "Sign In">
+      </button>
+      </form>
+	  </span>
+	  <span sec:authorize="isAuthenticated()">
+	  <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+		</span>
 </header>
 
-<body>
-   <div>
-      <h1>
-         Welcome to the Panther Lounge.
-      </h1>
-      <p>
-         The Panther Lounge is a recreational space owned by Florida Tech's
-         Student Government Association and co-run by the Florida Institute
-         of Technology Science Fiction and Fantasy Club (FITSSFF) and Anime Club.
-         With some exeptions, all Florida Tech students are free to use the lounge
-         every day from noon to ten pm.
-      </p>
-   </div>
+<body class="home">
+   <h1>
+      Welcome to the Panther Lounge <span th:remove="tag" sec:authentication="name"></span>
+      <br>
+      <span onclick="login()" sec:authorize="!isAuthenticated()" id="name">click to sign in.</span>
+	  <span onclick="login()" sec:authorize="isAuthenticated()" id="name">click to sign out.</span>
+   </h1>
 
-   <div class="halfRight">
-      <a href="catalog">
-         Browse the Libraries
+   <form>
+      <input id="searchQ" type="text"
+         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
+      <a href="catalog.html">
+         <button onclick="catalog()">Search</button>
       </a>
-   </div>
-
-   <div class="halfLeft">
-      <form>
-         Checkout an item from
-         <select name="club" id="chooseClub">
-            <option type="submit" value="anime">
-               Anime Club
-            </option>
-            <option value="fitssff">
-               FITSSFF
-            </option>
-            <a href="checkout">
-               <input type="submit" value="Yes, this club">
-            </a>
-         </select>
-      </form>
-   </div>
+      <br />
+      <a href="advanced.html">Advanced Search</a>
+   </form>
 </body>
+
+<footer>
+   <nav>
+      <a href="https://linktr.ee/floridatechanimeclub">
+         Anime Club's Linktree
+      </a>
+      <a href="https://linktr.ee/fitssff"> FITSSFF's Linktree </a>
+   </nav>
+</footer>
 
 </html>

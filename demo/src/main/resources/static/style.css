@@ -3,29 +3,34 @@ a {
    margin: 10px;
    padding: 5px;
    text-decoration: none;
-   transition: .3s;
+   transition: 0.5s;
 }
 
 a:hover {
    color: black;
 }
 
+a:visited {
+   color: darkred;
+}
+
 body {
-   background-color: gainsboro;
+   background-color: LightCoral;
    display: inline-block;
-   font-family: 'Courier New', Courier, monospace;
-   margin: 0px;
+   transition: 0.5s;
+   width: 100%;
+   /*margin-top: 175px;*/
 }
 
 button {
    background-color: lightcoral;
-   border: none;
+   border: solid;
    border-radius: 5px;
    box-shadow: 5px 5px;
    cursor: pointer;
    height: 25px;
    margin: 5px;
-   transition: .3s;
+   transition: 0.5s;
 }
 
 button:hover {
@@ -34,58 +39,84 @@ button:hover {
 }
 
 div {
-   background-color: lightcoral;
+   border: solid;
    border-radius: 5px;
    box-shadow: 5px 5px;
    display: block;
-   margin: 10px;
    padding: 25px;
-   position: relative;
+}
+
+footer {
+   background-color: lightCoral;
+   bottom: 0;
+   position: fixed;
+   text-align: right;
+   width: 100%;
 }
 
 form {
    margin: 10px;
    padding: 5px;
+   width: 75%;
 }
 
 header {
-   background-color: lightgoldenrodyellow;
-   margin-bottom: 75px;
-   padding: 25px;
+   background-color: lightCoral;
+   border-bottom: solid;
+   left: 0;
+   padding: 15px;
+   position: fixed;
+   top: 0;
+   transition: 0.5s linear;
    width: 100%;
 }
 
-header button {
-   text-align: right;
-}
-
 h1 {
-   display: inline;
-   margin: 10px;
-   padding: 5px;
+   font-family: Leap, sans-serif;
+   font-size: 150%;
+   letter-spacing: normal;
+   margin-bottom: 10px;
+   text-align: center;
+   text-shadow: -3px 3px #cd5c5c;
 }
 
-input {
+input[type="checkbox"] {
+   font-family: Noto Sans Mono, sans-serif;
+}
+
+input[type="text"] {
    border: none;
    border-radius: 5px;
-   margin: 10px;
-   padding: 5px;
-   transition: .3s;
+   box-shadow: 5px 5px;
+   padding: 10px;
+   transition: 1s;
+   width: 75%;
+}
+
+input[type="text"]:active {
+   box-shadow: none;
 }
 
 p {
+   background-repeat: repeat;
+   color: black;
    border-radius: 5px;
-   font-family: Verdana;
-   font-size: medium;
    margin: 10px;
    padding: 5px;
 }
 
+table {
+   font-family: Noto Sans Mono, sans-serif;
+   margin-top: 75px;
+   overflow: scroll;
+   width: 100%;
+}
+
 th {
-   border-bottom-style: 10px dotted;
-   border-right-style: 10px dotted;
+   background-color: lightyellow;
+   border: none;
+   border-radius: 10px;
    padding: 10px;
-   text-align: left;
 }
 
 select {
@@ -93,14 +124,15 @@ select {
    border-radius: 5px;
 }
 
-.halfRight {
-   float: right;
-   top: -10px;
-   width: 45%;
-}
-
-.halfLeft {
-   width: 45%;
+.home {
+   align-items: center;
+   display: flex;
+   flex-direction: column;
+   font-family: Galgo, sans-serif;
+   font-size: 35px;
+   letter-spacing: 1px;
+   justify-content: center;
+   height: 100%;
 }
 
 .links {
@@ -120,15 +152,52 @@ select {
    width: 75px;
 }
 
+#boxes {
+   margin: auto;
+   padding-bottom: 25px;
+   text-align: center;
+}
+
+#itemType,
+#itemSeries,
+#itemLocation,
+#itemStatus,
+#itemRating,
+#itemClub,
+#itemOther,
+#itemCheckout {
+   visibility: collapse;
+}
+
+#login {
+   background-color: lightCoral;
+   border-bottom: none;
+   height: 0;
+   overflow: hidden;
+   transition: 0.5s;
+   z-index: 100;
+}
+
 #searchBar {
-   width: 100%;
+   display: grid;
+   margin: auto;
 }
 
 #searchQ {
-   box-shadow: 5px 5px;
-   width: 50%;
+   margin-bottom: 5px;
 }
 
-#searchQ:active {
-   box-shadow: none
+@font-face {
+   font-family: Leap;
+   src: url(https://cdn.glitch.global/23b6abef-03e7-4620-aede-f43c1db0ea56/Leap.otf?v=1707320900742);
+}
+
+@font-face {
+   font-family: Galgo;
+   src: url(https://cdn.glitch.global/23b6abef-03e7-4620-aede-f43c1db0ea56/Galgo.ttf?v=1707321821709);
+}
+
+@font-face {
+   font-family: Noto Sans Mono;
+   src: url(https://cdn.glitch.global/23b6abef-03e7-4620-aede-f43c1db0ea56/NotoSansMono-VariableFont_wdth%2Cwght.ttf?v=1707341097131);
 }

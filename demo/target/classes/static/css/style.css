@@ -46,6 +46,11 @@ div {
    padding: 25px;
 }
 
+div.errors {
+	padding: 5px;
+	
+}
+
 footer {
    background-color: lightCoral;
    bottom: 0;
