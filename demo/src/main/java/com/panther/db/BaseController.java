@@ -19,6 +19,17 @@ public class BaseController {
         return "index";
     }
     
+    @GetMapping("/login")
+    public String login()
+    {
+	return "index";
+    }
+	@GetMapping("/logout")
+	public String logout()
+	{
+		return "index";
+	}
+    
     @RequestMapping("/checkout")
     public String checkout() {
        return "checkout";
