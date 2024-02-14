@@ -60,28 +60,35 @@
 
 <body>
    <div>
-      <form>
-         Your ID
-         <input readonly type="text">
-      </form>
-      <form>
-         Item ID
-         <input type="text">
-      </form>
-      <!-- date should be autofill -->
-      <form>
-         Checkout Date
-         <input oninput="twoWeeks('coDate')" id="coDate" type="date">
-      </form>
-      <form>
-         Return Date
-         <input readonly id="ciDate" type="date">
-      </form>
-      <button>
-         By submitting this form, I, [Name] agree to checkout
-         [This Item] that is currently in [Condition]
-         and return it by [Due Date].
-      </button>
+      <form method="POST" th:action="@{/checkout}" th:object="${request}">
+         <table>
+            <tr>
+               <td>
+               Your ID
+               <input readonly type="text" th:field="*{memberID}">
+               </td>
+            </tr>
+            <tr>
+               <td>
+               Item ID
+               <input type="text" th:field="*{itemID}">
+               </td>
+            </tr>
+            <tr>
+               <td>
+               Checkout Date
+               <input oninput="twoWeeks('coDate')" id="coDate" type="date" th:field="*{coDate}">
+               </td><td>
+               Return Date
+               <input readonly id="ciDate" type="date" th:field="*{returnDate}">
+               </td>
+            </tr>
+      </table>
+         
+      <input type="submit" value="By submitting this form, I, [Name] agree to checkout
+      [This Item] that is currently in [Condition]
+      and return it by [Due Date]."> 
+   </form>
    </div>
 </body>
 

@@ -3,6 +3,7 @@ package com.panther.db;
 import java.sql.*;
 import javax.sql.DataSource;
 import com.panther.details.itemDetails;
+import com.panther.details.checkoutForm;
 
 public class JDBC {
 
@@ -33,6 +34,23 @@ public class JDBC {
        if (executeUpdate(command, values))
           return true;
        else
+          return false;
+   }
+
+   public boolean addCheckout (checkoutForm request) {
+     String command = "INSERT INTO checkOut VALUES "
+                      + "(?,?,?,?,?)";
+
+     String[] values = new String[5];
+     values[0] = request.getMemberID();
+     values[1] = request.getItemID();
+     values[2] = request.getCodate();
+     values[3] = "false";
+     values[4] = null;
+
+     if (executeUpdate(command, values))
+          return true;
+     else
           return false;
    }
     

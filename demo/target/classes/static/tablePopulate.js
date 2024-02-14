@@ -15,6 +15,7 @@ function populate () {
          newRow.insertCell(6).innerHTML = "n/a";
          newRow.insertCell(7).innerHTML = value.desc;
          newRow.insertCell(8).innerHTML = value.id;
+         
       });
    }
    xhttp.open("GET", "/findAll?table=items");

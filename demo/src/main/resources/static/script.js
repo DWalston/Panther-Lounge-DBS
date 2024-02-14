@@ -43,8 +43,20 @@ function copyThis(number) {
    navigator.clipboard.writeText(number);
 }
 
+function addDaysToDate(objDate, intDays) {
+   var numberOfMlSeconds = objDate;
+   var addMlSeconds = ((intDays * 24) * 60) * 60 * 1000;
+   var newDateObj = new Date(numberOfMlSeconds + addMlSeconds);
+   return newDateObj;
+}
+
+function setTime() {
+   document.getElementById("coDate").innerHTML = Date();
+   document.getElementById("ciDate").innerHTML = addDaysToDate(Date(), 14);
+}
+
 // determines date of expected check-in
 function twoWeeks(coDate) {
-   document.getElementById("ciDate").innerHTML = addDays(document.getElementById(coDate), 14);
+   document.getElementById("ciDate").innerHTML = addDaysToDate(document.getElementById(coDate), 14);
    // figure out how to read school calendar in case it hits an invalid date
 }
