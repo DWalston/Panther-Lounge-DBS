@@ -10,7 +10,6 @@
 </head>
 
 <header id="login">
-<div class="links">
       <span th:if="${param.error}">
 			Invalid username and password.</span>
 	  <span sec:authorize="!isAuthenticated()">
