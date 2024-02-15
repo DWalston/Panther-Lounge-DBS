@@ -16,7 +16,7 @@
       placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
 </header>
 
-<body onload="populate()">
+<body onload="populate(), check()">
    <input id="searchBar" type="text"
       placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards...">
 
@@ -47,7 +47,7 @@
       </table>
 </body>
 
-<footer id="boxes" onload="check()">
+<footer id="boxes">
    <input id="itemNameBox" onclick="columnVis2('itemName')" type="checkbox" />
    <label for="itemNameBox"> Name </label>
    <input id="itemTypeBox" onclick="columnVis('itemType')" type="checkbox" />
