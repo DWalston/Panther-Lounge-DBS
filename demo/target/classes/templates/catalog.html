@@ -12,131 +12,60 @@
 </head>
 
 <header>
-   <a href="/">
-      <img class="logo" th:src="@{/images/lounge_logo_trans.png}" />
-      <h1>
-         The Panther Lounge
-      </h1>
-   </a>
-   <br>
-
-   <div class="links">
-      <input id="userName" type="text" placeholder="username">
-      <input id="pass" type="text" placeholder="password">
-      <a href="login.html">
-         <button type="submit">
-            Sign in
-         </button>
-         <br>
-      </a>
-      <a href="https://linktr.ee/fitssff">
-         FITSSFF's Linktree
-      </a>
-
-      <a href="https://linktr.ee/floridatechanimeclub
-   ">
-         Anime Club's Linktree
-      </a>
-
-      <a href="checkout.html">
-         Check out an Item
-      </a>
-   </div>
-   <p>
-      Catalog
-   </p>
+   <input id="searchBar" type="text"
+      placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
 </header>
 
 <body onload="populate()">
-   <button onclick="boxDispl()">
-      Hide columns
-   </button>
-
-   <div id="boxes">
-      <input id="itemNameBox" onclick="columnVis('itemName')" type="checkbox">
-      <label for="itemNameBox">
-         Name
-      </label>
-      <input id="itemTypeBox" onclick="columnVis('itemType')" type="checkbox">
-      <label for="itemTypeBox">
-         Type
-      </label>
-      <input id="itemSeriesBox" onclick="columnVis('itemSeries')" type="checkbox">
-      <label for="itemSeriesBox">
-         Series
-      </label>
-      <input id="itemShelfBox" onclick="columnVis('itemShelf')" type="checkbox">
-      <label for="itemShelfBox">
-         Shelf
-      </label>
-      <input id="itemStatusBox" onclick="columnVis('itemStatus')" type="checkbox">
-      <label for="itemStatusBox">
-         Status
-      </label>
-      <input id="itemRatingBox" onclick="columnVis('itemRating')" type="checkbox">
-      <label for="itemRatingBox">
-         Rating
-      </label>
-      <input id="itemClubBox" onclick="columnVis('itemClub')" type="checkbox">
-      <label for="itemClubBox">
-         Club
-      </label>
-      <input id="itemDescriptionBox" onclick="columnVis('itemDescription')" type="checkbox">
-      <label for="itemDescriptionBox">
-         Description
-      </label>
-      <input id="itemIDBox" onclick="columnVis('itemID')" type="checkbox">
-      <label for="itemIDBox">
-         ID
-      </label>
-   </div>
-
-   <input onkeyup="liveSearch()" id="searchBar" type="text"
+   <input id="searchBar" type="text"
       placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards...">
 
-   <table id="catalog">
-      <colgroup>
-         <col id="itemName" span="1">
-         <col id="itemType" span="1">
-         <col id="itemSeries" span="1">
-         <col id="itemShelf" span="1">
-         <col id="itemStatus" span="1">
-         <col id="itemRating" span="1">
-         <col id="itemClub" span="1">
-         <col id="itemDescription" span="1">
-         <col id="itemID" span="1">
-      </colgroup>
-      <tr id="header">
-         <th>
-            Name
-         </th>
-         <th>
-            Type
-         </th>
-         <th>
-            Series
-         </th>
-         <th>
-            Shelf
-         </th>
-         <th>
-            Status
-         </th>
-         <th>
-            Rating
-         </th>
-         <th>
-            Club
-         </th>
-         <th>
-            Description
-         </th>
-         <!-- remember to add specific information for certain item types -->
-         <th>
-            ID
-         </th>
-      </tr>
-   </table>
+      <table id="catalog">
+         <colgroup>
+            <col id="itemName" span="1" />
+            <col id="itemType" span="1" />
+            <col id="itemSeries" span="1" />
+            <col id="itemLocation" span="1" />
+            <col id="itemStatus" span="1" />
+            <col id="itemRating" span="1" />
+            <col id="itemClub" span="1" />
+            <col id="itemDescription" span="1" />
+            <col id="itemOther" span="1" />
+         </colgroup>
+         <tr id="header">
+            <th>Name</th>
+            <th>Type</th>
+            <th>Series</th>
+            <th>Shelf &#38; Section</th>
+            <th>Status</th>
+            <th>Rating</th>
+            <th>Club</th>
+            <th>Description</th>
+            <!-- remember to add specific information for certain item types -->
+            <th>Other</th>
+         </tr>
+      </table>
 </body>
+
+<footer id="boxes" onload="check()">
+   <input id="itemNameBox" onclick="columnVis2('itemName')" type="checkbox" />
+   <label for="itemNameBox"> Name </label>
+   <input id="itemTypeBox" onclick="columnVis('itemType')" type="checkbox" />
+   <label for="itemTypeBox"> Type </label>
+   <input id="itemSeriesBox" onclick="columnVis('itemSeries')" type="checkbox" />
+   <label for="itemSeriesBox"> Series </label>
+   <input id="itemLocationBox" onclick="columnVis('itemLocation')" type="checkbox" />
+   <label for="itemLocationBox"> Shelf &#38; Section </label>
+   <input id="itemStatusBox" onclick="columnVis('itemStatus')" type="checkbox" />
+   <label for="itemStatusBox"> Status </label>
+   <input id="itemRatingBox" onclick="columnVis('itemRating')" type="checkbox" />
+   <label for="itemRatingBox"> Rating </label>
+   <input id="itemClubBox" onclick="columnVis('itemClub')" type="checkbox" />
+   <label for="itemClubBox"> Club </label>
+   <input id="itemDescriptionBox" onclick="columnVis2('itemDescription')" type="checkbox" />
+   <label for="itemDescriptionBox"> Description </label>
+   <input id="itemOtherBox" onclick="columnVis('itemOther')" type="checkbox" />
+   <label for="itemOtherBox"> Other </label>
+</footer>
 
 </html>

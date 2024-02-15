@@ -11,85 +11,36 @@
 </head>
 
 <header>
-   <a href="login">
-      <img class="logo" th:src="@{/images/lounge_logo_trans.png}" />
-      <h1>
-         The Panther Lounge
-      </h1>
+   <a href="index.html">
+      <img class="logo" src="../assets/lounge_logo_trans.png" />
+      <h1>The Panther Lounge</h1>
    </a>
-   <br>
-
-   <div class="links">
-      <input id="userName" type="text" placeholder="username">
-      <input id="pass" type="text" placeholder="password">
-      <a href="signin.html">
-         <button type="submit">
-            Sign in
-         </button>
-         <br>
-      </a>
-      <a href="https://linktr.ee/fitssff">
-         FITSSFF's Linktree
-      </a>
-
-      <a href="https://linktr.ee/floridatechanimeclub
-   ">
-         Anime Club's Linktree
-      </a>
-
-      <a href="checkout.html">
-         Check out an Item
-      </a>
-
-      <p>
-         Checkout
-      </p>
-   </div>
 
    <form>
       <!-- send submission to search bar in the catalog section -->
       <input id="searchQ" type="text"
-         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards...">
+         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
       <a href="catalog.html">
-         <button type="submit">
-            ⌕
-         </button>
+         <button onclick="catalog()" type="submit">⌕</button>
       </a>
    </form>
 </header>
 
 <body>
-   <div>
-      <form method="POST" th:action="@{/checkout}" th:object="${request}">
-         <table>
-            <tr>
-               <td>
-               Your ID
-               <input readonly type="text" th:field="*{memberID}">
-               </td>
-            </tr>
-            <tr>
-               <td>
-               Item ID
-               <input type="text" th:field="*{itemID}">
-               </td>
-            </tr>
-            <tr>
-               <td>
-               Checkout Date
-               <input oninput="twoWeeks('coDate')" id="coDate" type="date" th:field="*{coDate}">
-               </td><td>
-               Return Date
-               <input readonly id="ciDate" type="date" th:field="*{returnDate}">
-               </td>
-            </tr>
-      </table>
-         
-      <input type="submit" value="By submitting this form, I, [Name] agree to checkout
-      [This Item] that is currently in [Condition]
-      and return it by [Due Date]."> 
+   <form method="POST" th:action="@{/checkout}" th:object="${request}">
+      <div class="halfleft">
+         <input placeholder="Item ID" id="itemID" type="text" th:field="*{itemID}"/>
+      </div>
+      
+      <div>   
+         By submitting this form, I, <input id="name" />, student number <input readonly id="ID" type="text" th:field="*{memberID}"/>,
+         agree to checkout <input readonly id="itemName" /> on <input readonly type="text" id="coDate" th:field="*{codate}"/>,
+         and will return it by <input readonly type="date" id="ciDate" th:field="*{returnDate}"/>.
+      </div>
+
+   capiche?
+   <button><input type="submit" value="capiche."></button>
    </form>
-   </div>
 </body>
 
 </html>

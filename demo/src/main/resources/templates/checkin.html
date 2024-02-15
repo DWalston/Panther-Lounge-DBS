@@ -27,15 +27,14 @@
 </header>
 
 <body>
-   <form method="POST" th:action="@{/checkout}" th:object="${request}">
-      <div class="halfleft">
-         <input placeholder="Item ID" id="itemID" type="text" th:field="*{itemID}"/>
-      </div>
-      
-      <div>   
+   <form method="POST" th:action="@{/checkin}" th:object="${request}">
+    <div class="halfleft">
+        <input placeholder="Item ID" id="itemID" th:field="*{itemID}" />
+    </div>
+
+    <div>   
          By submitting this form, I, <input id="name" />, student number <input readonly id="ID" type="text" th:field="*{memberID}"/>,
-         agree to checkout <input readonly id="itemName" /> on <input readonly type="text" id="coDate" th:field="*{codate}"/>,
-         and will return it by <input readonly type="date" id="ciDate" th:field="*{returnDate}"/>.
+         agree i am returning <input readonly id="itemName" /> on <input readonly type="text" id="coDate" th:field="*{returnDate}"/>,
       </div>
 
    capiche?

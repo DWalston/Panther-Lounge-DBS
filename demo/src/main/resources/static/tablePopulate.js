@@ -5,7 +5,7 @@ function populate () {
       //table.insertRow(table.rows.length).insertCell(0).innerHTML = this.responseText;
       let obj = $.parseJSON(this.responseText);
       $.each(obj, function (key, value) { 
-         let newRow = table.insertRow(table.rows.length); 
+         let newRow = table.insertRow(table.rows.length);
          newRow.insertCell(0).innerHTML = value.name;
          newRow.insertCell(1).innerHTML = value.type;
          newRow.insertCell(2).innerHTML = value.series;

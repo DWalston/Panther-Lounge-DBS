@@ -1,5 +1,6 @@
 package com.panther.db;
 
+import java.time.LocalDate;
 import java.sql.*;
 import javax.sql.DataSource;
 import com.panther.details.itemDetails;
@@ -44,14 +45,29 @@ public class JDBC {
      String[] values = new String[5];
      values[0] = request.getMemberID();
      values[1] = request.getItemID();
-     values[2] = request.getCodate();
-     values[3] = "false";
+     values[2] = LocalDate.now().toString();
+     values[3] = "0";
      values[4] = null;
 
      if (executeUpdate(command, values))
           return true;
      else
           return false;
+   }
+
+   public boolean returnItem(String memID, String itemID) {
+      String command = "UPDATE checkOut SET returned=?,returnDate=?"
+                       + " WHERE memberId=? AND itemId=?";
+
+      String[] values = new String[4];
+      values[0] = "1";
+      values[1] = LocalDate.now().toString();
+      values[2] = memID;
+      values[3] = itemID;
+
+      if (executeUpdate(command, values))
+        return true;
+      else return false;
    }
     
     //public String constructParams(String[][] params)
@@ -104,19 +120,28 @@ public class JDBC {
        ResultSet rs = executeQuery(command, new String[0]);
        return rs;
     }
-    
+     //dear god in heaven these next two are broken rn
+    public ResultSet search (String tableName, int start) {
+        String command = "SELECT * FROM " + tableName + " LIMIT ?,?";
+        System.out.println(command);
+
+        ResultSet rs = executeQuery(command, new String[0]);
+        return rs;
+     }
+
     public ResultSet search (String tableName, String[][] params) {
        String command = "SELECT * FROM " + tableName + " WHERE ";
     
        for (String[] param : params) {
           command = command + param[0] + "=? AND ";
        }
+       command.substring(0, (command.length() - 5));
        
        ResultSet rs = null;
        try {
           DataSource dataSource = configDataSource.source();
           Connection conn = dataSource.getConnection();
-          PreparedStatement ps = conn.prepareStatement(command.substring(0, (command.length() - 5)));
+          PreparedStatement ps = conn.prepareStatement(command);
           for (int i = 1; i <= params.length; i++) {
               ps.setString(i, params[i - 1][1]);
           }
@@ -158,5 +183,17 @@ public class JDBC {
       }
       return rs;
     }
+
+    /*public ResultSet executeQuery (preparedStatement ps) {
+        ResultSet rs = null;
+        try {
+           DataSource dataSource = configDataSource.source();
+           Connection conn = dataSource.getConnection();
+           rs = ps.executeQuery();
+       } catch (SQLException e) {
+           System.out.println(e);
+       }
+       return rs;
+     }*/
 
 }
