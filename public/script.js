@@ -1,10 +1,4 @@
-// the itemName & ItemDescription boxes are checked by default
-function check() {
-  document.getElementById("itemNameBox").checked = true;
-  document.getElementById("itemDescriptionBox").checked = true;
-}
-
-// show/hide column
+// show/hide column in catalog
 function columnVis(element) {
   if (document.getElementById(element).style.visibility === "visible") {
     document.getElementById(element).style.visibility = "collapse";
@@ -18,6 +12,18 @@ function columnVis2(element) {
     document.getElementById(element).style.visibility = "visible";
   } else {
     document.getElementById(element).style.visibility = "collapse";
+  }
+}
+
+// show/hide row in check-in
+function rowVis(element) {
+  var row = document.getElementsByClassName(element);
+  for (let counter = 0; counter < row.length; ++counter) {
+    if (row[counter].hidden === true) {
+      row[counter].hidden = false;
+    } else {
+      row[counter].hidden = true;
+    }
   }
 }
 

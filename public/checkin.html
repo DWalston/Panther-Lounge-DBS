@@ -1,4 +1,4 @@
-<html>
+<html class="pagesWithForms">
 
 <head>
   <title>Panther Lounge Database</title>
@@ -8,29 +8,55 @@
   <link rel="favicon" href="../assets/lounge_logo_trans.png" />
 </head>
 
-<body onload="checkedOut()">
-  <div id="checkedOut">
-    <span> Item ID:</span>
-    <input readonly id="item" />
-    <span>Condition: </span>
-    <input readonly id="condition" />
-    <span>Checkout Date: </span>
-    <input readonly id="coDate" />
-    <button onclick="checkIn()">check in this item</button>
-  </div>
+<header>
+  <h1><a href="index.html">The Panther Lounge</a></h1>
+  <label for="library">contact the librarian</label>
+  <select name="library">
+    <option value="anime">Anime Club</option>
+    <option value="fitssff">FITSSFF</option>
+  </select>
+  <input type="submit" />
+  link this to message/email the email this is linked to
+</header>
 
-  <div>
-    <label for="library">contact the librarian</label>
-    <select name="library">
-      <option value="anime">Anime Club</option>
-      <option value="fitssff">FITSSFF</option>
-    </select>
-    <input type="submit" value="Submit" />
-  </div>
-
-  <div id="nullCheckedOut">
-    You currently do not have any items checked out
-  </div>
+<body>
+  <table>
+    <tr id="header">
+      <th>Name</th>
+      <th>ID</th>
+      <th>Condition</th>
+      <th>Checkout Date</th>
+      <th>Due Date</th>
+      <th>Status</th>
+    </tr>
+    <tr class="checkedOutItem">
+      <td>Lord of the Rings</td>
+      <td>042069</td>
+      <td>Good</td>
+      <td>Nov 13, 1987</td>
+      <td>Nov 27, 1987</td>
+      <td>
+        <input type="submit" />
+        if submitted, the button should be replaced with the text: "turned
+        in", and the the class of this row should equal "checkedOutItem"
+      </td>
+    </tr>
+    <tr class="checkedInItem">
+      <td>Lord of the Swings</td>
+      <td>042070</td>
+      <td>Mint</td>
+      <td>Nov 13, 1987</td>
+      <td>Nov 27, 1987</td>
+      <td>checked in</td>
+    </tr>
+  </table>
 </body>
+
+<footer id="boxes">
+  <input id="checkedIn" onclick="rowVis('checkedInItem')" type="checkbox" checked />
+  <label for="checkedIn"> Checked-In Items </label>
+  <input id="checkedOut" onclick="rowVis('checkedOutItem')" type="checkbox" checked />
+  <label for="checkedOut"> Checked-Out Items </label>
+</footer>
 
 </html>
