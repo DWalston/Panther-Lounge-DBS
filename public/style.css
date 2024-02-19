@@ -1,32 +1,33 @@
 a {
+  color: black;
   font-weight: bold;
   margin: 10px;
   padding: 5px;
   text-decoration: none;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
 a:hover {
-  color: black;
+  color: DarkRed;
 }
 
 body {
-  background-color: gainsboro;
+  background-color: LightCoral;
   display: inline-block;
-  font-family: "Courier New", Courier, monospace;
-  margin: 0px;
-  width: 100%;
+  transition: 0.5s;
+  max-width: 100%;
+  min-width: 95%;
 }
 
 button {
   background-color: lightcoral;
-  border: none;
+  border: solid;
   border-radius: 5px;
   box-shadow: 5px 5px;
   cursor: pointer;
   height: 25px;
   margin: 5px;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
 button:hover {
@@ -34,60 +35,118 @@ button:hover {
   box-shadow: none;
 }
 
-div {
-  background-color: lightcoral;
-  border-radius: 5px;
-  box-shadow: 5px 5px;
-  display: block;
-  margin: 10px;
-  padding: 25px;
-  position: relative;
+footer {
+  background-color: lightCoral;
+  bottom: 0;
+  position: fixed;
+  text-align: right;
+  width: 100%;
 }
 
 form {
   margin: 10px;
   padding: 5px;
+  width: 75%;
 }
 
 header {
-  background-color: lightgoldenrodyellow;
-  padding: 25px;
+  background-color: lightCoral;
+  border-bottom: solid;
+  left: 0;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  transition: .15s;
   width: 100%;
+  z-index: 1;
 }
 
 h1 {
-  display: inline;
-  margin: 10px;
-  padding: 5px;
+  font-family: Leap, sans-serif;
+  font-size: 150%;
+  letter-spacing: normal;
+  margin-bottom: 10px;
+  text-align: center;
+  text-shadow: -3px 3px #cd5c5c;
 }
 
-input {
+input[type="checkbox"] {
+  font-family: Noto Sans Mono, sans-serif;
+}
+
+input[type="text"] {
   border: none;
   border-radius: 5px;
-  margin: 10px;
-  padding: 5px;
-  transition: 0.3s;
+  box-shadow: 5px 5px;
+  overflow: auto;
+  padding: 10px;
+  transition: 1s;
+  width: 75%;
+}
+
+input[type="text"]:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+input[type="range"] {
+  background: none;
+  height: 55px;
+  width: 25%;
+  touch-action: manipulation;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 5em;
+  width: 5em;
+}
+
+input[type="range"]::-moz-range-track {
+  background: linear-gradient(to right,
+      black 0 calc(100% * (var(--value) / 5)),
+      lightgray 0 calc(100% * (var(--value) / 5)));
+  block-size: 100%;
+  mask: repeat left center/5em url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Paw-print.svg/1200px-Paw-print.svg.png");
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  height: 5em;
+  width: 5em;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right,
+      black 0 calc(100% * (var(--value) / 5)),
+      lightgray 0 calc(100% * (2.5 / 5)));
+  block-size: 100%;
+  -webkit-mask: repeat left center/20% url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Paw-print.svg/1200px-Paw-print.svg.png");
 }
 
 p {
+  background-repeat: repeat;
+  color: black;
   border-radius: 5px;
-  font-size: medium;
   margin: 10px;
   padding: 5px;
 }
 
 table {
+  font-family: Noto Sans Mono, sans-serif;
+  margin-top: 125px;
   width: 100%;
-  margin: 25px;
+}
+
+td {
+  padding: 10px;
 }
 
 th {
   background-color: lightyellow;
-  border: 1px;
-  border-bottom-style: 10px dotted;
-  border-right-style: 10px dotted;
+  border: none;
+  border-radius: 10px;
   padding: 10px;
-  text-align: left;
 }
 
 select {
@@ -95,14 +154,34 @@ select {
   border-radius: 5px;
 }
 
-.halfRight {
-  float: right;
-  top: -10px;
-  width: 45%;
+.advanced {
+  margin-top: 100px;
 }
 
-.halfLeft {
-  width: 35%;
+.advanced input[type="text"] {
+  width: auto;
+  background: none;
+  border-bottom: solid 1px;
+  border-radius: initial;
+  box-shadow: none;
+  font-family: Luki, sans-serif;
+  font-size: large;
+  padding: 1px;
+}
+
+.advanced input::placeholder {
+  color: black;
+}
+
+.home {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: Galgo, sans-serif;
+  font-size: 35px;
+  letter-spacing: 1px;
+  justify-content: center;
+  height: 100%;
 }
 
 .links {
@@ -122,6 +201,12 @@ select {
   width: 75px;
 }
 
+#boxes {
+  margin: auto;
+  padding-bottom: 25px;
+  text-align: center;
+}
+
 #itemType,
 #itemSeries,
 #itemLocation,
@@ -133,31 +218,40 @@ select {
   visibility: collapse;
 }
 
-#nav {
-  display: none;
-  height: 100%;
-  width: 250px;
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
+#login {
+  background-color: lightCoral;
+  border-bottom: none;
+  height: 0;
+  overflow: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  z-index: 100;
 }
 
 #searchBar {
-  display:block;
-  position: fixed;
-  width: 75%;
-  z-index: 1;
+  display: grid;
+  margin: auto;
 }
 
 #searchQ {
-  box-shadow: 5px 5px;
-  width: 75%;
+  margin-bottom: 5px;
 }
 
-#searchQ:active {
-  box-shadow: none;
+@font-face {
+  font-family: Leap;
+  src: url(fonts/Leap.otf);
+}
+
+@font-face {
+  font-family: Galgo;
+  src: url(fonts/Galgo.ttf);
+}
+
+@font-face {
+  font-family: Noto Sans Mono;
+  src: url(fonts/NotoSansMono-VariableFont_wdth\,wght.ttf);
+}
+
+@font-face {
+  font-family: Luki;
+  src: url(fonts/LukiSHandwritedFont-MXqp.ttf);
 }

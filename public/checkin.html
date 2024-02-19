@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <title>Panther Lounge Database</title>
+  <script src="script.js"></script>
+  <script src="../script.js"></script>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="favicon" href="../assets/lounge_logo_trans.png" />
+</head>
+
+<body onload="checkedOut()">
+  <div id="checkedOut">
+    <span> Item ID:</span>
+    <input readonly id="item" />
+    <span>Condition: </span>
+    <input readonly id="condition" />
+    <span>Checkout Date: </span>
+    <input readonly id="coDate" />
+    <button onclick="checkIn()">check in this item</button>
+  </div>
+
+  <div>
+    <label for="library">contact the librarian</label>
+    <select name="library">
+      <option value="anime">Anime Club</option>
+      <option value="fitssff">FITSSFF</option>
+    </select>
+    <input type="submit" value="Submit" />
+  </div>
+
+  <div id="nullCheckedOut">
+    You currently do not have any items checked out
+  </div>
+</body>
+
+</html>

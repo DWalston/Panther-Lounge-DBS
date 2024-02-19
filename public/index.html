@@ -1,105 +1,49 @@
 <html>
 
 <head>
-   <title>
-      Panther Lounge Database
-   </title>
-   <script src="script.js">
-   </script>
-   <link rel="stylesheet" href="style.css">
-   <link rel="favicon" href="../assets/lounge_logo_trans.png">
+   <title>Panther Lounge Database</title>
+   <script src="script.js"></script>
+   <link rel="stylesheet" href="style.css" />
+   <link rel="icon" type="image/x-icon" href="../assets/lounge_logo_trans.png" />
 </head>
 
-<header>
-   <a href="index.html">
-      <img class="logo" src="../assets/lounge_logo_trans.png">
-      <h1>
-         The Panther Lounge
-      </h1>
-   </a>
-
-   <div class="nav">
-      <a href="javascript:void(0)" class="closebtn" onclick="nav()">
-         &times;
-      <input id="userName" type="text" placeholder="username">
-      <input id="pass" type="text" placeholder="password">
-      <a href="signin.html">
-         <button type="submit">
-            Sign in
-         </button>
-         </a>
-   </div>
-
-   <form method="get">
-      <!-- send submission to search bar in the catalog section -->
-      <input id="searchQ" type="text"
-         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards...">
-      <a href="catalog.html">
-         <button onclick="fillFromIndex()" type="submit">
-            ⌕
-         </button>
-      </a>
-   </form>
+<header id="login" style="visibility:hidden">
+   <label>
+      Username:
+      <input type="username" />
+   </label>
+   <label>
+      Password:
+      <input type="password" />
+   </label>
+   <button>Sign In</button>
 </header>
 
-<body>
-   <p>
-      I'm new
-   </p>
-   <button onclick="lever()">
-      change later
-   </button>
-   <p>
-      I'm a member
-   </p>
-   
-   <div id="newPerson">
-      <h1>
-         Welcome to the Panther Lounge.
-      </h1>
-      <p>
-         The Panther Lounge is a recreational space owned by Florida Tech's
-         Student Government Association and co-run by the Florida Institute
-         of Technology Science Fiction and Fantasy Club (FITSSFF) and Anime Club.
-         With some exeptions, all Florida Tech students are free to use the lounge
-         every day from noon to ten pm.
-      </p>
-            <a href="https://linktr.ee/fitssff">
-               FITSSFF's Linktree
-            </a>
+<body class="home">
+   <h1>
+      Welcome to the Panther Lounge,
+      <br />
+      <span onclick="login()" id="name">click to sign in</span>.
+   </h1>
 
-            <a href="https://linktr.ee/floridatechanimeclub
-               ">
-               Anime Club's Linktree
-            </a>
-   </div>
-
-   <div class="oldPerson">
-
-   </div>
-
-   <div class="halfRight">
+   <form>
+      <input id="searchQ" type="text"
+         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
       <a href="catalog.html">
-         Browse the Libraries
+         <button onclick="catalog()">Search</button>
       </a>
-   </div>
-
-   <div class="halfLeft">
-      <form>
-         Checkout an item from
-         <select name="club" id="chooseClub">
-            <option type="submit" value="anime">
-               Anime Club
-            </option>
-            <option value="fitssff">
-               FITSSFF
-            </option>
-            <a href="checkout.html">
-               <input type="submit" value="Yes, this club">
-            </a>
-         </select>
-      </form>
-   </div>
+      <br />
+      <a href="advanced.html">Advanced Search</a><span>•</span><a href="checkin.html">Check-In an Item</a>
+   </form>
 </body>
+
+<footer>
+   <nav>
+      <a href="https://linktr.ee/floridatechanimeclub">
+         Anime Club's Linktree
+      </a>
+      <a href="https://linktr.ee/fitssff"> FITSSFF's Linktree </a>
+   </nav>
+</footer>
 
 </html>

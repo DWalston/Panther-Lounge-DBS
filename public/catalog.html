@@ -1,58 +1,77 @@
 <html>
 
 <head>
-   <title>Panther Lounge Database</title>
+   <title>Catalog</title>
    <script src="script.js"></script>
    <link rel="stylesheet" href="style.css" />
-   <link rel="favicon" href="../assets/lounge_logo_trans.png" />
+   <link rel="icon" type="image/x-icon" href="../assets/lounge_logo_trans.png" />
 </head>
 
 <header>
-   <!-- logo -->
-   <a href="index.html">
-      <img class="logo" src="../assets/lounge_logo_trans.png" />
-      <h1>The Panther Lounge</h1>
-   </a>
-   <button onclick="nav()" class="member">I'm a member</button>
-   <br />
-   <!-- send submission to search bar in the catalog section -->
-   <input id="searchQ" type="text"
+   <h1><a href="index.html">The Panther Lounge</a></h1>
+   <input onkeyup="liveSearch('searchBar','catalog')" id="searchBar" type="text"
       placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
-   <a href="catalog.html">
-      <button onclick="catalog()" type="submit">search</button>
-   </a>
-
-   <!-- sign in -->
-   <div id="nav">
-      <input id="username" autocomplete="username" type="text" placeholder="username" />
-      <input id="password" autocomplete="current-password" type="text" placeholder="password" />
-      <button onclick="nav()">Close</button>
-   </div>
 </header>
 
-<body>
-   <div>
-      <h1>Welcome to the Panther Lounge.</h1>
-      <p>
-         The Panther Lounge is a recreational space owned by Florida Tech's
-         Student Government Association and co-run by the Florida Institute of
-         Technology Science Fiction and Fantasy Club (FITSSFF) and Anime Club.
-         With some exeptions, all Florida Tech students are free to use the
-         lounge every day from noon to ten pm.
-      </p>
-   </div>
-
-   <div class="halfRight">
-      <a href="https://linktr.ee/fitssff"> FITSSFF's Linktree </a>
-      <br />
-      <a href="https://linktr.ee/floridatechanimeclub">
-         Anime Club's Linktree
-      </a>
-   </div>
-
-   <div class="halfLeft">
-      <a href="catalog.html"> Browse the libraries </a>
-   </div>
+<body onload="check()">
+   <table id="catalog">
+      <colgroup>
+         <col id="itemName" span="1" />
+         <col id="itemType" span="1" />
+         <col id="itemSeries" span="1" />
+         <col id="itemLocation" span="1" />
+         <col id="itemStatus" span="1" />
+         <col id="itemRating" span="1" />
+         <col id="itemClub" span="1" />
+         <col id="itemDescription" span="1" />
+         <col id="itemOther" span="1" />
+      </colgroup>
+      <tr id="header">
+         <th>Name</th>
+         <th>Type</th>
+         <th>Series</th>
+         <th>Shelf &#38; Section</th>
+         <th>Status</th>
+         <th>Rating</th>
+         <th>Club</th>
+         <th>Description</th>
+         <!-- remember to add specific information for certain item types -->
+         <th>Other</th>
+      </tr>
+      <tr>
+         <td>Lord of the Rings</td>
+         <td>Book</td>
+         <td>Series</td>
+         <td>Shelf</td>
+         <td>Status</td>
+         <td>Rating</td>
+         <td>FITSSFF</td>
+         <td>Description</td>
+         <!-- remember to add specific information for certain item types -->
+         <td>Other</td>
+      </tr>
+   </table>
 </body>
+
+<footer id="boxes">
+   <input id="itemNameBox" onclick="columnVis2('itemName')" type="checkbox" />
+   <label for="itemNameBox"> Name </label>
+   <input id="itemTypeBox" onclick="columnVis('itemType')" type="checkbox" />
+   <label for="itemTypeBox"> Type </label>
+   <input id="itemSeriesBox" onclick="columnVis('itemSeries')" type="checkbox" />
+   <label for="itemSeriesBox"> Series </label>
+   <input id="itemLocationBox" onclick="columnVis('itemLocation')" type="checkbox" />
+   <label for="itemLocationBox"> Shelf &#38; Section </label>
+   <input id="itemStatusBox" onclick="columnVis('itemStatus')" type="checkbox" />
+   <label for="itemStatusBox"> Status </label>
+   <input id="itemRatingBox" onclick="columnVis('itemRating')" type="checkbox" />
+   <label for="itemRatingBox"> Rating </label>
+   <input id="itemClubBox" onclick="columnVis('itemClub')" type="checkbox" />
+   <label for="itemClubBox"> Club </label>
+   <input id="itemDescriptionBox" onclick="columnVis2('itemDescription')" type="checkbox" />
+   <label for="itemDescriptionBox"> Description </label>
+   <input id="itemOtherBox" onclick="columnVis('itemOther')" type="checkbox" />
+   <label for="itemOtherBox"> Other </label>
+</footer>
 
 </html>
