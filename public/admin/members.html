@@ -1,16 +1,35 @@
 <html>
-  <head>
-    <title>Panther Lounge Database</title>
-    <script src="../script.js"></script>
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="favicon" href="../assets/lounge_logo_trans.png" />
-  </head>
+
+<head>
+   <title>Panther Lounge Database</title>
+   <script src="../script.js"></script>
+   <link rel="stylesheet" href="../style.css" />
+   <link rel="favicon" href="../assets/lounge_logo_trans.png" />
+</head>
+
+<header>
+   <h1><a href="index.html">The Panther Lounge</a></h1>
+   <input onkeyup="liveSearch('searchBar','members')" id="searchBar" type="text" placeholder="Search for members" />
+</header>
+
 <body>
-  <a href="index.html">
-    <h1>Admin Veiw</h1>
-  </a>
-  <br />
-  <a href="catalog.html"> Edit the Catalog </a>
-  <a href="members.html"> View the Member List </a>
-  </body>
+
+   <table id="members">
+      <tr id="header">
+         <th>Name</th>
+         <th>Username</th>
+         <th>Member Expiration</th>
+         <th>Club(s)</th>
+         <th>Checked Out</th>
+      </tr>
+      <tr>
+         <td>Sample Member</td>
+         <td>Username</td>
+         <td>Member Expiration</td>
+         <td>Club</td>
+         <td>no items</td>
+      </tr>
+   </table>
+</body>
+
 </html>

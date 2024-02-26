@@ -8,7 +8,11 @@ a {
 }
 
 a:hover {
-  color: DarkRed;
+  color: #CD5C5C;
+}
+
+area:hover {
+  background-color: blue;
 }
 
 body {
@@ -52,11 +56,12 @@ form {
 header {
   background-color: lightCoral;
   border-bottom: solid;
+  box-shadow: 2px 2px 5px;
   left: 0;
   padding: 15px;
   position: fixed;
   top: 0;
-  transition: .15s;
+  transition: 0.15s;
   width: 100%;
   z-index: 1;
 }
@@ -70,12 +75,57 @@ h1 {
   text-shadow: -3px 3px #cd5c5c;
 }
 
-input[type="checkbox"] {
+hr {
+  background-color: #cd5c5c;
+  height: 1px;
+  border: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=checkbox] {
   font-family: Noto Sans Mono, sans-serif;
 }
 
-input[type="text"] {
-  border: none;
+input[type=number] {
+  width: auto;
+  background: none;
+  border-bottom: solid 1px;
+  border-radius: initial;
+  box-shadow: none;
+  font-family: Luki, sans-serif;
+  font-size: large;
+  padding: 1px;
+  -moz-appearance: textfield;
+
+}
+
+input[type=password] {
+  width: auto;
+  background: none;
+  border-bottom: solid 1px;
+  border-radius: initial;
+  box-shadow: none;
+  font-family: Luki, sans-serif;
+  font-size: large;
+  padding: 1px;
+}
+
+input[type=search] {
   border-radius: 5px;
   box-shadow: 5px 5px;
   overflow: auto;
@@ -84,44 +134,43 @@ input[type="text"] {
   width: 75%;
 }
 
-input[type="text"]:focus {
+input[type=search]:focus {
   box-shadow: none;
-  outline: none;
 }
 
-input[type="range"] {
+input[type=submit] {
+  background-color: lightcoral;
+  border: solid;
+  border-radius: 5px;
+  box-shadow: 5px 5px;
+  cursor: pointer;
+  height: 25px;
+  margin: 5px;
+  transition: 0.5s;
+}
+
+input[type=submit]:active {
   background: none;
-  height: 55px;
-  width: 25%;
-  touch-action: manipulation;
-  -webkit-appearance: none;
+  box-shadow: none;
 }
 
-input[type="range"]::-moz-range-thumb {
-  height: 5em;
-  width: 5em;
+input[type=text] {
+  width: auto;
+  background: none;
+  border-bottom: solid 1px;
+  border-radius: initial;
+  box-shadow: none;
+  font-family: Luki, sans-serif;
+  font-size: large;
+  padding: 1px;
 }
 
-input[type="range"]::-moz-range-track {
-  background: linear-gradient(to right,
-      black 0 calc(100% * (var(--value) / 5)),
-      lightgray 0 calc(100% * (var(--value) / 5)));
-  block-size: 100%;
-  mask: repeat left center/5em url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Paw-print.svg/1200px-Paw-print.svg.png");
+label {
+  font-size: large;
 }
 
-input[type="range"]::-webkit-slider-thumb {
-  height: 5em;
-  width: 5em;
-  -webkit-appearance: none;
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-  background: linear-gradient(to right,
-      black 0 calc(100% * (var(--value) / 5)),
-      lightgray 0 calc(100% * (2.5 / 5)));
-  block-size: 100%;
-  -webkit-mask: repeat left center/20% url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Paw-print.svg/1200px-Paw-print.svg.png");
+option {
+  background-color: LightSalmon;
 }
 
 p {
@@ -134,7 +183,6 @@ p {
 
 table {
   font-family: Noto Sans Mono, sans-serif;
-  margin-top: 125px;
   width: 100%;
 }
 
@@ -150,27 +198,26 @@ th {
 }
 
 select {
+  background-color: LightCoral;
   border: none;
   border-radius: 5px;
+  font-family: Luki, sans-serif;
+  font-size: large;
+  outline: none;
 }
 
 .advanced {
+  margin-left: 15%;
+  margin-right: 15%;
   margin-top: 100px;
 }
 
-.advanced input[type="text"] {
-  width: auto;
-  background: none;
-  border-bottom: solid 1px;
-  border-radius: initial;
-  box-shadow: none;
-  font-family: Luki, sans-serif;
-  font-size: large;
-  padding: 1px;
+.advanced input::placeholder {
+  color: darkred;
 }
 
-.advanced input::placeholder {
-  color: black;
+.catalog {
+  margin-top: 125px;
 }
 
 .home {
@@ -182,6 +229,11 @@ select {
   letter-spacing: 1px;
   justify-content: center;
   height: 100%;
+}
+
+.home label {
+  font-size: xx-large;
+  margin-top: 75px;
 }
 
 .links {
@@ -225,6 +277,40 @@ select {
   overflow: hidden;
   transition: 0.5s;
   z-index: 100;
+}
+
+#rating {
+  background: none;
+  touch-action: manipulation;
+  width: 70%;
+  -webkit-appearance: none;
+}
+
+#rating::-moz-range-thumb {
+  height: 125px;
+  width: 125px;
+}
+
+#rating::-moz-range-track {
+  background: linear-gradient(to right,
+      black 0 calc(100% * (var(--value) / 5)),
+      lightgray 0 calc(100% * (var(--value) / 5)));
+  block-size: auto;
+  mask: repeat left center/20% url(assets/rating.png);
+}
+
+#rating::-webkit-slider-thumb {
+  height: 125px;
+  width: 125px;
+  -webkit-appearance: none;
+}
+
+#rating::-webkit-slider-runnable-track {
+  background: linear-gradient(to right,
+      black 0 calc(100% * (var(--value) / 5)),
+      lightgray 0 calc(100% * (2.5 / 5)));
+  block-size: auto;
+  -webkit-mask: repeat left center/20% url(assets/rating.png);
 }
 
 #searchBar {

@@ -1,4 +1,4 @@
-<html class="pagesWithForms">
+<html class="catalog">
 
 <head>
   <title>Panther Lounge Database</title>
@@ -10,13 +10,13 @@
 
 <header>
   <h1><a href="index.html">The Panther Lounge</a></h1>
-  <label for="library">contact the librarian</label>
+  <input type="submit" value="Contact" />
+  <label for="library">the</label>
   <select name="library">
     <option value="anime">Anime Club</option>
     <option value="fitssff">FITSSFF</option>
   </select>
-  <input type="submit" />
-  link this to message/email the email this is linked to
+  <label for="library">librarian</label>
 </header>
 
 <body>
@@ -36,27 +36,25 @@
       <td>Nov 13, 1987</td>
       <td>Nov 27, 1987</td>
       <td>
-        <input type="submit" />
-        if submitted, the button should be replaced with the text: "turned
-        in", and the the class of this row should equal "checkedOutItem"
+        <input type="submit" value="" />
       </td>
     </tr>
-    <tr class="checkedInItem">
+    <tr class="overdueItem">
       <td>Lord of the Swings</td>
       <td>042070</td>
       <td>Mint</td>
       <td>Nov 13, 1987</td>
       <td>Nov 27, 1987</td>
-      <td>checked in</td>
+      <td><input type="submit" value="Overdue" /></td>
     </tr>
   </table>
 </body>
 
 <footer id="boxes">
-  <input id="checkedIn" onclick="rowVis('checkedInItem')" type="checkbox" checked />
-  <label for="checkedIn"> Checked-In Items </label>
   <input id="checkedOut" onclick="rowVis('checkedOutItem')" type="checkbox" checked />
   <label for="checkedOut"> Checked-Out Items </label>
+  <input id="overdue" onclick="rowVis('overdueItem')" type="checkbox" checked />
+  <label for="overdue"> Overdue Items </label>
 </footer>
 
 </html>

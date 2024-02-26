@@ -1,4 +1,4 @@
-<html>
+<html class="home">
 
 <head>
    <title>Panther Lounge Database</title>
@@ -8,21 +8,14 @@
    <link rel="favicon" href="../assets/lounge_logo_trans.png" />
 </head>
 
-<body onload="name(), item(), dates()">
-   <div class="halfleft">
-      <input placeholder="Item ID" id="itemID" />
-   </div>
+<body onload="name()">
+   <h1>Welcome back, <span id="name"></span>.</h1>
+   <br />
 
-   <div>
-      By submitting this form, I, <input id="name" />, also known as,
-      <input readonly id="username" />, agree to checkout
-      <input readonly id="itemName" />, which is in
-      <input readonly id="condition" /> condition on
-      <input readonly type="date" id="coDate" />, and will return it by
-      <input readonly type="date" id="ciDate" />.
-   </div>
+   <a href="catalog.html"> Browse the libraries </a>
 
-   <button>I agree and understand to these terms</button>
+   <a href="checkout.html">Check out an item </a>
+
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-<html>
+<html class="catalog">
 
 <head>
    <title>Catalog</title>
@@ -9,11 +9,11 @@
 
 <header>
    <h1><a href="index.html">The Panther Lounge</a></h1>
-   <input onkeyup="liveSearch('searchBar','catalog')" id="searchBar" type="text"
+   <input onkeyup="liveSearch('searchBar','catalog')" id="searchBar" type="search"
       placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
 </header>
 
-<body onload="check()">
+<body>
    <table id="catalog">
       <colgroup>
          <col id="itemName" span="1" />
@@ -54,7 +54,7 @@
 </body>
 
 <footer id="boxes">
-   <input id="itemNameBox" onclick="columnVis2('itemName')" type="checkbox" />
+   <input id="itemNameBox" onclick="columnVis2('itemName')" type="checkbox" checked />
    <label for="itemNameBox"> Name </label>
    <input id="itemTypeBox" onclick="columnVis('itemType')" type="checkbox" />
    <label for="itemTypeBox"> Type </label>
@@ -68,7 +68,7 @@
    <label for="itemRatingBox"> Rating </label>
    <input id="itemClubBox" onclick="columnVis('itemClub')" type="checkbox" />
    <label for="itemClubBox"> Club </label>
-   <input id="itemDescriptionBox" onclick="columnVis2('itemDescription')" type="checkbox" />
+   <input id="itemDescriptionBox" onclick="columnVis2('itemDescription')" type="checkbox" checked />
    <label for="itemDescriptionBox"> Description </label>
    <input id="itemOtherBox" onclick="columnVis('itemOther')" type="checkbox" />
    <label for="itemOtherBox"> Other </label>
