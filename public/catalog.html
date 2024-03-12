@@ -1,77 +1,128 @@
 <html class="catalog">
+   <head>
+      <title>Panther Lounge Database</title>
+      <script src="script.js"></script>
+      <script src="../script.js"></script>
+      <link rel="stylesheet" href="../style.css" />
+      <link rel="favicon" href="assets/lounge_logo_trans.png" />
+    </head>
 
-<head>
-   <title>Catalog</title>
-   <script src="script.js"></script>
-   <link rel="stylesheet" href="style.css" />
-   <link rel="icon" type="image/x-icon" href="../assets/lounge_logo_trans.png" />
-</head>
+  <header>
+    <h1><a href="index.html">The Panther Lounge</a></h1>
+    <input
+      onkeyup="liveSearch('searchBar','catalog')"
+      id="searchBar"
+      type="search"
+      placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..."
+    />
+  </header>
 
-<header>
-   <h1><a href="index.html">The Panther Lounge</a></h1>
-   <input onkeyup="liveSearch('searchBar','catalog')" id="searchBar" type="search"
-      placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
-</header>
-
-<body>
-   <table id="catalog">
+  <body>
+    <table id="catalog">
       <colgroup>
-         <col id="itemName" span="1" />
-         <col id="itemType" span="1" />
-         <col id="itemSeries" span="1" />
-         <col id="itemLocation" span="1" />
-         <col id="itemStatus" span="1" />
-         <col id="itemRating" span="1" />
-         <col id="itemClub" span="1" />
-         <col id="itemDescription" span="1" />
-         <col id="itemOther" span="1" />
+        <col id="itemName" span="1" />
+        <col id="itemType" span="1" />
+        <col id="itemSeries" span="1" />
+        <col id="itemLocation" span="1" />
+        <col id="itemStatus" span="1" />
+        <col id="itemRating" span="1" />
+        <col id="itemClub" span="1" />
+        <col id="itemDescription" span="1" />
+        <col id="itemOther" span="1" />
+        <col id="itemCheckout" span="2" />
       </colgroup>
       <tr id="header">
-         <th>Name</th>
-         <th>Type</th>
-         <th>Series</th>
-         <th>Shelf &#38; Section</th>
-         <th>Status</th>
-         <th>Rating</th>
-         <th>Club</th>
-         <th>Description</th>
-         <!-- remember to add specific information for certain item types -->
-         <th>Other</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Series</th>
+        <th>Shelf &#38; Section</th>
+        <th>Status</th>
+        <th>Rating</th>
+        <th>Club</th>
+        <th>Description</th>
+        <!-- remember to add specific information for certain item types -->
+        <th>Other</th>
+        <th>ID</th>
+        <th>Availability</th>
       </tr>
-      <tr>
-         <td>Lord of the Rings</td>
-         <td>Book</td>
-         <td>Series</td>
-         <td>Shelf</td>
-         <td>Status</td>
-         <td>Rating</td>
-         <td>FITSSFF</td>
-         <td>Description</td>
-         <!-- remember to add specific information for certain item types -->
-         <td>Other</td>
+      <tr class="availableItem">
+        <td>Lord of the Rings</td>
+        <td>Book</td>
+        <td>Series</td>
+        <td>Shelf</td>
+        <td>Status</td>
+        <td>Rating</td>
+        <td>FITSSFF</td>
+        <td>Description</td>
+        <!-- remember to add specific information for certain item types -->
+        <td>Other</td>
+        <td>
+          <button onclick="copyThis(42069)">42069</button>
+        </td>
+        <td>
+          <input type="submit" value="Available for checkout" />
+        </td>
       </tr>
-   </table>
-</body>
+            <tr class="unavailableItem">
+        <td>Lord of the Swings</td>
+        <td>Book</td>
+        <td>Series</td>
+        <td>Shelf</td>
+        <td>Status</td>
+        <td>Rating</td>
+        <td>FITSSFF</td>
+        <td>Description</td>
+        <!-- remember to add specific information for certain item types -->
+        <td>Other</td>
+        <td>42070
+        </td>
+        <td>
+          Checked Out
+        </td>
+      </tr>
+    </table>
+  </body>
 
-<footer id="boxes">
-   <input id="itemNameBox" onclick="columnVis2('itemName')" type="checkbox" checked />
-   <label for="itemNameBox"> Name </label>
-   <input id="itemTypeBox" onclick="columnVis('itemType')" type="checkbox" />
-   <label for="itemTypeBox"> Type </label>
-   <input id="itemSeriesBox" onclick="columnVis('itemSeries')" type="checkbox" />
-   <label for="itemSeriesBox"> Series </label>
-   <input id="itemLocationBox" onclick="columnVis('itemLocation')" type="checkbox" />
-   <label for="itemLocationBox"> Shelf &#38; Section </label>
-   <input id="itemStatusBox" onclick="columnVis('itemStatus')" type="checkbox" />
-   <label for="itemStatusBox"> Status </label>
-   <input id="itemRatingBox" onclick="columnVis('itemRating')" type="checkbox" />
-   <label for="itemRatingBox"> Rating </label>
-   <input id="itemClubBox" onclick="columnVis('itemClub')" type="checkbox" />
-   <label for="itemClubBox"> Club </label>
-   <input id="itemDescriptionBox" onclick="columnVis2('itemDescription')" type="checkbox" checked />
-   <label for="itemDescriptionBox"> Description </label>
-   <input id="itemOtherBox" onclick="columnVis('itemOther')" type="checkbox" />
-   <label for="itemOtherBox"> Other </label>
-</footer>
-
+  <footer id="boxes">
+    <input id="itemNameBox" onclick="columnVis2('itemName')" type="checkbox" checked/>
+    <label for="itemNameBox"> Name </label>
+    <input id="itemTypeBox" onclick="columnVis('itemType')" type="checkbox" />
+    <label for="itemTypeBox"> Type </label>
+    <input
+      id="itemSeriesBox"
+      onclick="columnVis('itemSeries')"
+      type="checkbox"
+    />
+    <label for="itemSeriesBox"> Series </label>
+    <input
+      id="itemLocationBox"
+      onclick="columnVis('itemLocation')"
+      type="checkbox"
+    />
+    <label for="itemLocationBox"> Shelf &#38; Section </label>
+    <input
+      id="itemStatusBox"
+      onclick="columnVis('itemStatus')"
+      type="checkbox"
+    />
+    <label for="itemStatusBox"> Status </label>
+    <input
+      id="itemRatingBox"
+      onclick="columnVis('itemRating')"
+      type="checkbox"
+    />
+    <label for="itemRatingBox"> Rating </label>
+    <input id="itemClubBox" onclick="columnVis('itemClub')" type="checkbox" />
+    <label for="itemClubBox"> Club </label>
+    <input
+      id="itemDescriptionBox"
+      onclick="columnVis2('itemDescription')"
+      type="checkbox" checked
+    />
+    <label for="itemDescriptionBox"> Description </label>
+    <input id="itemOtherBox" onclick="columnVis('itemOther')" type="checkbox" />
+    <label for="itemOtherBox"> Other </label>
+    <input id="itemCheckoutBox" onclick="columnVis('itemCheckout')" type="checkbox" />
+    <label for="itemCheckoutBox"> Availability </label>
+  </footer>
 </html>

@@ -1,49 +1,52 @@
 <html>
+   <head>
+      <title>Panther Lounge Database</title>
+      <script src="script.js"></script>
+      <script src="../script.js"></script>
+      <link rel="stylesheet" href="../style.css" />
+      <link rel="favicon" href="assets/lounge_logo_trans.png" />
+    </head>
 
-<head>
-   <title>Panther Lounge Database</title>
-   <script src="script.js"></script>
-   <link rel="stylesheet" href="style.css" />
-   <link rel="icon" type="image/x-icon" href="../assets/lounge_logo_trans.png" />
-</head>
-
-<header id="login" style="visibility: hidden">
-   <label>
+  <header id="login" style="visibility: hidden">
+    <label>
       Username:
-      <input type="text" autocomplete="username" />
-   </label>
-   <label>
+      <input type="text" autocomplete="username"/>
+    </label>
+    <label>
       Password:
       <input type="password" autocomplete="current-password" />
-   </label>
-   <button>Sign In</button>
-</header>
+    </label>
+    <button>Sign In</button>
+  </header>
 
-<body class="home">
-   <h1>
+  <body class="home">
+    <h1>
       Welcome to the Panther Lounge,
       <br />
       <span onclick="login()" id="name">click to sign in</span>.
-   </h1>
+    </h1>
 
-   <form>
-      <input id="searchQ" type="search"
-         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
+    <form>
+      <input
+        id="searchQ"
+        type="search"
+        placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..."
+      />
       <a href="catalog.html">
-         <button onclick="catalog()">Search</button>
+        <button onclick="catalog()">Search</button>
       </a>
       <br />
-      <a href="advanced.html">Advanced Search</a><a href="checkin.html">Check-In an Item</a>
-   </form>
-</body>
+      <a href="advanced.html">Advanced Search</a
+      ><a href="checkin.html">Check-In an Item</a>
+    </form>
+  </body>
 
-<footer>
-   <nav>
+  <footer>
+    <nav>
       <a href="https://linktr.ee/floridatechanimeclub">
-         Anime Club's Linktree
+        Anime Club's Linktree
       </a>
       <a href="https://linktr.ee/fitssff"> FITSSFF's Linktree </a>
-   </nav>
-</footer>
-
+    </nav>
+  </footer>
 </html>

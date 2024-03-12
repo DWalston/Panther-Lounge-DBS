@@ -15,6 +15,11 @@ function columnVis2(element) {
   }
 }
 
+// copy id number
+function copyThis(number) {
+  navigator.clipboard.writeText(number);
+}
+
 // show/hide row in check-in
 function rowVis(element) {
   var row = document.getElementsByClassName(element);
