@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS member (
     joined DATE,
     memberUntil DATE,
     flagged BOOL,
-    pass VARCHAR(64),
+    password VARCHAR(64),
     CONSTRAINT PRIMARY KEY (id)
 );
 
