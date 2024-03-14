@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -16,6 +18,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		http.authenticationProvider(authenticationProvider());
 		http
 			.authorizeHttpRequests((requests) -> requests
 			.requestMatchers("/adminBase", "/admin/**").hasRole("ADMIN")
@@ -32,10 +35,22 @@ public class WebSecurityConfig {
 
 		return http.build();
 	}
-	
+	Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+     
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+         
+        return authProvider;
+    }
 	@Bean
 	public UserDetailsService userDetailsService() {
-		UserDetails viewer =
+/*		UserDetails viewer =
 			 User.withDefaultPasswordEncoder()
 				.username("none")
 				.password("test")
@@ -51,8 +66,8 @@ public class WebSecurityConfig {
 				.username("admin")
 				.password("420")
 				.roles("USER","ADMIN")
-				.build();
+				.build();*/
 
-		return new InMemoryUserDetailsManager(viewer, user, admin);
+		return new MemberUserDetailsService();
 	}
 }
