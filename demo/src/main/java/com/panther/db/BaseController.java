@@ -90,15 +90,4 @@ public class BaseController {
          model.addAttribute("message", "Did not add item");
       return "status";
     }
-
-    @GetMapping("/catalog")
-    public String cat(Model model) {
-       model.addAttribute("item", new itemDetails());
-       return "catalog";
-    }
-
-    @PostMapping("/catalog")
-    public String gotoCheckout(Model model) {
-        return "redirect:/checkout";
-    }
 }

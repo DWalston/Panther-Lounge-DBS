@@ -21,7 +21,7 @@ public class WebSecurityConfig {
 		http.authenticationProvider(authenticationProvider());
 		http
 			.authorizeHttpRequests((requests) -> requests
-			.requestMatchers("/admin", "/admin/**").hasRole("ADMIN")
+			.requestMatchers("/adminBase", "/admin/**").hasRole("ADMIN")
 			.requestMatchers("/checkout", "/advanced", "/checkin").hasRole("USER")
 				.requestMatchers("/", "/index","/static/**").permitAll()
 				.anyRequest().authenticated()

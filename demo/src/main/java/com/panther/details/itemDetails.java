@@ -13,4 +13,5 @@ public class itemDetails {
    String rating;
    String desc;
    String club;
+   String other;
 }
