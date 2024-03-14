@@ -136,6 +136,13 @@ public class JDBC {
         return rs;
      }
 
+    public ResultSet itemNameSearch(String itemName) {
+        String command = "SELECT * FROM items WHERE itemName LIKE ?";
+        
+        ResultSet rs = executeQuery(command, new String[0]);
+        return rs;
+    }
+
     public ResultSet search (String tableName, String[][] params) {
        String command = "SELECT * FROM " + tableName + " WHERE ";
     

@@ -67,13 +67,57 @@ public class CatalogController {
                             .trim());
          values.add(item);
         }
-       model.addAttribute("displayItems", values);}
        rs.close();
+       model.addAttribute("displayItems", values);}
        return "catalog";
     }
 
     @PostMapping("")
     public String gotoCheckout(Model model) {
         return "redirect:/checkout";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam() String name, Model model) throws SQLException {
+        ResultSet rs = SQL.itemNameSearch(name);
+
+        if (rs == null)
+           model.addAttribute("displayItems", new ArrayList<>());
+       else {
+       List<itemDetails> values = new ArrayList<>();
+       while (rs.next()) {
+         itemDetails item = new itemDetails();
+         item.setId(rs.getString("id")
+                      .toString()
+                      .trim());
+         item.setName(rs.getString("itemName")
+                        .toString()
+                        .trim());
+         item.setType(rs.getString("itemType")
+                        .toString()
+                        .trim());
+         item.setSeries(rs.getString("series")
+                         .toString()
+                         .trim());
+         item.setStatus(rs.getString("itemStatus")
+                          .toString()
+                          .trim());
+         item.setRating(rs.getString("rating")
+                          .toString()
+                          .trim());
+         item.setDesc(rs.getString("descript")
+                        .toString()
+                        .trim());
+         item.setClub(rs.getString("club")
+                        .toString()
+                        .trim());
+         item.setShelf(rs.getString("shelf")
+                            .toString()
+                            .trim());
+         values.add(item);
+        }
+       rs.close();
+       model.addAttribute("displayItems", values);}
+       return "catalog";
     }
 }
