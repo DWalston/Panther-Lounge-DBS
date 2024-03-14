@@ -38,6 +38,13 @@ public class JDBC {
           return false;
    }
 
+   //public boolean addSpreadsheet ()
+   // do whatever process to get the scanner working here
+
+   /* 
+    * 
+    */
+
    public boolean addCheckout (checkoutForm request) {
      String command = "INSERT INTO checkOut VALUES "
                       + "(?,?,?,?,?)";
