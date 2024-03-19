@@ -23,7 +23,7 @@ public class WebSecurityConfig {
 			.authorizeHttpRequests((requests) -> requests
 			.requestMatchers("/adminBase", "/admin/**").hasRole("ADMIN")
 			.requestMatchers("/checkout", "/advanced", "/checkin").hasRole("USER")
-				.requestMatchers("/", "/index","/static/**").permitAll()
+				.requestMatchers("/", "/index","/static/**", "../css/**", "../js/**").permitAll()
 				.anyRequest().authenticated()
 			)
 			.formLogin((form) -> form
