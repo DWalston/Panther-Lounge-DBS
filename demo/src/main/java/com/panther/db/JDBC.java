@@ -3,11 +3,34 @@ package com.panther.db;
 import java.time.LocalDate;
 import java.sql.*;
 import javax.sql.DataSource;
+import com.panther.details.memberDetails;
 import com.panther.details.itemDetails;
 import com.panther.details.checkoutForm;
 
 public class JDBC {
-
+	
+	public boolean addMember (memberDetails member) {
+        String command = "INSERT INTO member" +
+                       " VALUES (?,?,?,?,?,?,?,?,?,?)";
+        
+        String[] values = new String[10];
+       values[0] = member.getId();
+       values[1] = member.getName();
+       values[2] = member.getEmail();
+       values[3] = member.getDiscord();
+       values[4] = member.getPhone();
+       values[5] = member.getClub();
+       values[6] = member.getJoined();
+       values[7] = member.getMemberUntil();
+       values[8] = member.getFlag();
+	   values[9] = member.getPassword();
+       
+       if (executeUpdate(command, values))
+          return true;
+       else
+          return false;
+   }
+	
     public boolean addItem (String tableName, String[] values) {
         String command = "INSERT INTO " + tableName +
                        " VALUES (" + (new String(new char[values.length]).replace("\0", ", ?").substring(2) + ")");
@@ -135,8 +158,7 @@ public class JDBC {
         ResultSet rs = executeQuery(command, new String[0]);
         return rs;
      }
-
-    public ResultSet itemNameSearch(String itemName) {
+	 public ResultSet itemNameSearch(String itemName) {
         String command = "SELECT * FROM items WHERE itemName LIKE ?";
         
         ResultSet rs = executeQuery(command, new String[0]);

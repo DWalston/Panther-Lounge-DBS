@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.panther.details.itemDetails;
 import com.panther.details.checkoutForm;
+import com.panther.details.memberDetails;
 
 import org.springframework.web.bind.annotation.SessionAttributes; 
 
@@ -40,6 +41,31 @@ public class BaseController {
     {
 	return "redirect:/";
     }
+	@GetMapping("/register")
+	public String register(Model model) {
+		memberDetails newUser = new memberDetails();
+		LocalDate today = LocalDate.now();
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+		newUser.setPhone("8139512605");
+		newUser.setClub("FITSSFF");
+        newUser.setJoined(today.format(dateFormat));
+        newUser.setMemberUntil(today.plusWeeks(52).format(dateFormat));
+		newUser.setFlag("0");
+        model.addAttribute("member", newUser);
+		return "register";
+	}
+	
+	@PostMapping("/register")
+    public String submit(@ModelAttribute("request") memberDetails member, Model model) {
+      JDBC sql = new JDBC();
+	  if(sql.addMember(member))
+         model.addAttribute("message", "item added successfully");
+      else
+         model.addAttribute("message", "Did not add item");
+      return "status";
+	}
+
+	
 	@GetMapping("/logout")
 	public String logout()
 	{

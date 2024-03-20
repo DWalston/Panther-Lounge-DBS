@@ -93,6 +93,24 @@ input[type="text"] {
    width: 75%;
 }
 
+input[type="tel"] {
+   border: none;
+   border-radius: 5px;
+   box-shadow: 5px 5px;
+   padding: 10px;
+   transition: 1s;
+   width: 75%;
+}
+
+input[type="email"] {
+   border: none;
+   border-radius: 5px;
+   box-shadow: 5px 5px;
+   padding: 10px;
+   transition: 1s;
+   width: 75%;
+}
+
 input[type="text"]:active {
    box-shadow: none;
 }

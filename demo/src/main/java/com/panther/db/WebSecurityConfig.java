@@ -18,12 +18,11 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authenticationProvider(authenticationProvider());
 		http
 			.authorizeHttpRequests((requests) -> requests
 			.requestMatchers("/adminBase", "/admin/**").hasRole("ADMIN")
 			.requestMatchers("/checkout", "/advanced", "/checkin").hasRole("USER")
-				.requestMatchers("/", "/index","/static/**", "../css/**", "../js/**").permitAll()
+				.requestMatchers("/", "/index","/static/**", "/catalog", "/css/**", "/js/**", "/register").permitAll()
 				.anyRequest().authenticated()
 			)
 			.formLogin((form) -> form
@@ -35,22 +34,11 @@ public class WebSecurityConfig {
 
 		return http.build();
 	}
-	Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-     
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-         
-        return authProvider;
-    }
+
 	@Bean
 	public UserDetailsService userDetailsService() {
-/*		UserDetails viewer =
+		
+		UserDetails viewer =
 			 User.withDefaultPasswordEncoder()
 				.username("none")
 				.password("test")
@@ -66,8 +54,8 @@ public class WebSecurityConfig {
 				.username("admin")
 				.password("420")
 				.roles("USER","ADMIN")
-				.build();*/
+				.build();
 
-		return new MemberUserDetailsService();
+		return new InMemoryUserDetailsManager(viewer, user, admin);
 	}
 }

@@ -1,0 +1,80 @@
+<!DOCTYPE html> 
+
+<html>
+
+<head>
+   <title>Panther Lounge Database</title>
+   <script src="../js/script.js"></script>
+   <link rel="stylesheet" href="../css/style.css" />
+   <link rel="favicon" href="../assets/lounge_logo_trans.png" />
+</head>
+
+<header id="register">
+</header>
+
+<body class="home">
+   <h1>
+      Register New Account
+      <br>
+   </h1>
+	  <form method="POST" th:action="@{/register}" th:object="${member}"> 
+         <tr>
+			<td>
+               <label for="member">ID:</label><br/>
+               <input type="text" th:field="*{id}"/>
+            </td>
+			<br>
+            <td>
+               <label for="member">Name:</label><br/>
+               <input type="text" th:field="*{name}"/>
+            </td>
+			<br>
+            <td>
+               <label for="member">Email:</label><br/> 
+               <input type="email" th:field="*{email}"/>
+            </td>
+			<br>
+			<td>
+               <label for="member">Club:</label><br/>
+			   <select name = "club" th:field="*{club}">
+					<option value = "FITSSFF">FITSSFF</option>
+					<option value = "Anime">Anime Club</option>
+			   </select>
+            </td>
+			<br>
+            <td>
+               <label for="member">Discord:</label><br/>
+               <input type="text" th:field="*{discord}"/>
+            </td>
+			<br>
+            <td>
+               <label for="member">Phone:</label><br/>
+               <input type="tel" th:field="*{phone} " pattern="[0-9]{10}"/>
+            </td>
+			<br>
+            <td>
+               <label for="member">Password:</label><br/>
+               <input type="text" th:field="*{password}"/>
+            </td>
+         </tr>
+         <tr>
+            <td>
+			   <input type="hidden" th:field="*{joined}"/>
+			   <input type="hidden" th:field="*{memberUntil}"/>
+			   <input type="hidden" th:field="*{flag}"/>
+               <input type="submit" value="Register"/> 
+            </td>
+         </tr>
+      </form>
+</body>
+
+<footer>
+   <nav>
+      <a href="https://linktr.ee/floridatechanimeclub">
+         Anime Club's Linktree
+      </a>
+      <a href="https://linktr.ee/fitssff"> FITSSFF's Linktree </a>
+   </nav>
+</footer>
+
+</html>
