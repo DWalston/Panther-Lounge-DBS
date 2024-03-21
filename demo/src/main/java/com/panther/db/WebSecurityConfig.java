@@ -63,9 +63,8 @@ public class WebSecurityConfig {
         }
         rs.close();
 		UserDetails admin =
-			 User.withDefaultPasswordEncoder()
-				.username("admin")
-				.password("420")
+			 User.withUsername("admin")
+				.password(encoder.encode(("420")))
 				.roles("USER","ADMIN")
 				.build();
 		values.add(admin);
