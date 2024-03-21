@@ -4,16 +4,23 @@ package com.panther.db;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model; 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.ModelAttribute; 
 import org.springframework.web.bind.annotation.PostMapping; 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import com.panther.details.itemDetails;
 import com.panther.details.checkoutForm;
 import com.panther.details.memberDetails;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.web.bind.annotation.SessionAttributes; 
 
@@ -22,7 +29,11 @@ import java.time.format.DateTimeFormatter;
 
 @Controller
 public class BaseController {
-
+	private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
+	@Autowired
+    public BaseController(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
+       this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
+    }
     @GetMapping("/")
     public String home(Model model)
     {
@@ -58,8 +69,15 @@ public class BaseController {
 	@PostMapping("/register")
     public String submit(@ModelAttribute("request") memberDetails member, Model model) {
       JDBC sql = new JDBC();
-	  if(sql.addMember(member))
+	  if(sql.addMember(member)) {
          model.addAttribute("message", "item added successfully");
+		 UserDetails q = User.withDefaultPasswordEncoder()
+				.username(member.getId())
+				.password(member.getPassword())
+				.roles("USER")
+				.build();
+         inMemoryUserDetailsManager.createUser(q);
+	  }
       else
          model.addAttribute("message", "Did not add item");
       return "status";
