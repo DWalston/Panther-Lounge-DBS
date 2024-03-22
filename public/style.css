@@ -8,7 +8,7 @@ a {
 }
 
 a:hover {
-  color: #CD5C5C;
+  color: #cd5c5c;
 }
 
 area:hover {
@@ -43,7 +43,7 @@ footer {
   background-color: lightCoral;
   bottom: 0;
   position: fixed;
-  text-align: right;
+  text-align: center;
   width: 100%;
 }
 
@@ -100,29 +100,15 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   font-family: Noto Sans Mono, sans-serif;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
-  
 }
 
-input[type=search] {
-  border-radius: 5px;
-  box-shadow: 5px 5px;
-  overflow: auto;
-  padding: 10px;
-  transition: 1s;
-  width: 75%;
-}
-
-input[type=search]:focus {
-  box-shadow: none;
-}
-
-input[type=submit] {
+input[type="submit"] {
   background-color: lightcoral;
   border: solid;
   border-radius: 5px;
@@ -133,7 +119,7 @@ input[type=submit] {
   transition: 0.5s;
 }
 
-input[type=submit]:active {
+input[type="submit"]:active {
   background: none;
   box-shadow: none;
 }
@@ -203,6 +189,10 @@ select {
   height: 100%;
 }
 
+.home footer {
+  text-align: right;
+}
+
 .home label {
   font-size: xx-large;
   margin-top: 75px;
@@ -264,14 +254,11 @@ select {
 }
 
 #rating::-moz-range-track {
-  background: linear-gradient(
-    to right,
-    black 0 calc(100% * (var(--value) / 5)),
-    lightgray 0 calc(100% * (var(--value) / 5))
-  );
+  background: linear-gradient(to right,
+      black 0 calc(100% * (var(--value) / 5)),
+      lightgray 0 calc(100% * (var(--value) / 5)));
   block-size: auto;
-  mask: repeat left center/20%
-    url(https://cdn.glitch.global/23b6abef-03e7-4620-aede-f43c1db0ea56/rating.png?v=1708723671441);
+  mask: repeat left center/20% url(assets/rating.png);
 }
 
 #rating::-webkit-slider-thumb {
@@ -281,23 +268,41 @@ select {
 }
 
 #rating::-webkit-slider-runnable-track {
-  background: linear-gradient(
-    to right,
-    black 0 calc(100% * (var(--value) / 5)),
-    lightgray 0 calc(100% * (2.5 / 5))
-  );
+  background: linear-gradient(to right,
+      black 0 calc(100% * (var(--value) / 5)),
+      lightgray 0 calc(100% * (2.5 / 5)));
   block-size: auto;
-  -webkit-mask: repeat left center/20%
-    url(https://cdn.glitch.global/23b6abef-03e7-4620-aede-f43c1db0ea56/rating.png?v=1708723671441);
+  -webkit-mask: repeat left center/20% url(assets/rating.png);
 }
 
 #searchBar {
-  display: grid;
+  border-radius: 5px;
+  box-shadow: 5px 5px;
+  display: inline;
   margin: auto;
+  padding: 10px;
+  transition: 1s;
+  width: 75%;
+}
+
+#searchBar:focus {
+  box-shadow: none;
 }
 
 #searchQ {
+  border-radius: 5px;
+  box-shadow: 5px 5px;
+  display: inline;
+  margin: auto;
   margin-bottom: 5px;
+  padding: 10px;
+  transition: 1s;
+  width: 75%;
+}
+
+
+#searchQ:focus {
+  box-shadow: none;
 }
 
 @font-face {
@@ -312,5 +317,5 @@ select {
 
 @font-face {
   font-family: Noto Sans Mono;
-  src: url(fonts/NotoSansMono-VariableFont_wdth\,wght.ttf);
+  src: url(fonts/NotoSansMono-VariableFont_wdth\wght.ttf);
 }

@@ -1,14 +1,19 @@
-<html>
-  <head>
-    <title>Panther Lounge Database</title>
-    <script src="../script.js"></script>
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="favicon" href="assets/lounge_logo_trans.png" />
-  </head>
+<html class="catalog">
 
-  <body>
-    Edit an item
-    <br />
+<head>
+  <title>Panther Lounge Database</title>
+  <script src="../script.js"></script>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="favicon" href="assets/lounge_logo_trans.png" />
+</head>
+
+<header>
+  <h1><a href="index.html">The Panther Lounge</a></h1>
+</header>
+
+<body>
+  <label for="editItem"> Edit an item </label>
+  <form id="editItem">
     <input placeholder="name" type="text" id="editName" />
     <input placeholder="type" type="text" id="editType" />
     <input placeholder="club" type="text" id="editClub" />
@@ -19,25 +24,30 @@
     <input placeholder="rating" type="text" id="editRating" />
     <input placeholder="description" type="text" id="editDescription" />
     <input type="submit" />
+  </form>
 
-    <br />
-
-    Add an item
+  <label for="addItem"> Add an item </label>
+  <form id="addItem">
     <input placeholder="name" type="text" id="name" />
-    <input placeholder="type" type="text" id="yype" />
+    <input placeholder="type" type="text" id="type" />
     <input placeholder="club" type="text" id="club" />
     <input placeholder="location" type="text" id="location" />
     <input placeholder="ID" type="text" id="ID" />
     <input placeholder="series" type="text" id="series" />
     <input placeholder="status" type="text" id="status" />
-    <input placeholder="rating" type="text" id="rating" />
+    <input placeholder="rating" type="text" id="scoreRating" />
     <input placeholder="description" type="text" id="description" />
     <input type="submit" />
+  </form>
 
-    <br />
+  <br />
 
-    Add multiple items
+  <label for="addMultiple"> Add multiple items </label>
+  <form id="addMultiple">
     <input type="file" id="myFile" name="filename" accept=".csv" multiple />
-    <input type="submit" />
-  </body>
+  </form>
+
+  <input type="submit" />
+</body>
+
 </html>
