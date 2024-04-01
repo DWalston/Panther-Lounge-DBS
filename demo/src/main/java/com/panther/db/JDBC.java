@@ -6,10 +6,13 @@ import javax.sql.DataSource;
 import com.panther.details.memberDetails;
 import com.panther.details.itemDetails;
 import com.panther.details.checkoutForm;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class JDBC {
 	
 	public boolean addMember (memberDetails member) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
         String command = "INSERT INTO member" +
                        " VALUES (?,?,?,?,?,?,?,?,?,?)";
         
@@ -23,7 +26,7 @@ public class JDBC {
        values[6] = member.getJoined();
        values[7] = member.getMemberUntil();
        values[8] = member.getFlag();
-	   values[9] = member.getPassword();
+	   values[9] = encoder.encode(member.getPassword());
        
        if (executeUpdate(command, values))
           return true;
@@ -160,8 +163,18 @@ public class JDBC {
      }
 	 public ResultSet itemNameSearch(String itemName) {
         String command = "SELECT * FROM items WHERE itemName LIKE CONCAT('%', ?, '%')";
+		
+		String[] params = {itemName};
         
-        String[] params = {itemName};
+        ResultSet rs = executeQuery(command, params);
+        return rs;
+    }
+	
+	public ResultSet memberSearch(String memID) {
+        String command = "SELECT * FROM member WHERE id = ?";
+		
+		String[] params = {memID};
+        
         ResultSet rs = executeQuery(command, params);
         return rs;
     }
