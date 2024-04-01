@@ -35,12 +35,10 @@
 	  <span onclick="login()" sec:authorize="isAuthenticated()" id="name">click to sign out.</span>
    </h1>
 
-   <form>
-      <input id="searchQ" type="text"
-         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
-      <a href="catalog.html">
-         <button onclick="catalog()">Search</button>
-      </a>
+   <form th:object="${searchQuery}" th:action="@{/catalog/searchProcess}" method="post">
+         <input id="searchBar" type="text" th:field="*{name}"
+            placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
+        <a> <button onclick="submit">Search</button> </a>
       <br />
       <a href="advanced.html">Advanced Search</a>
    </form>

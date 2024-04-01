@@ -12,8 +12,10 @@
 </head>
 
 <header>
-   <input id="searchBar" type="text"
-      placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
+   <form th:object="${searchQuery}" th:action="@{/catalog/searchProcess}" method="post">
+      <input id="searchBar" type="text" th:field="*{name}"
+         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
+   </form>
 </header>
 
 <body onload="check()">

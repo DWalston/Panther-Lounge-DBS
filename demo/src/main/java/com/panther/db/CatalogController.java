@@ -31,6 +31,7 @@ public class CatalogController {
 
     @GetMapping("")
     public String cat(Model model) throws SQLException {
+       model.addAttribute("searchQuery", new itemDetails());
        ResultSet rs = SQL.search(tableName);
        if (rs == null)
            model.addAttribute("displayItems", new ArrayList<>());
@@ -68,17 +69,25 @@ public class CatalogController {
          values.add(item);
         }
        rs.close();
-       model.addAttribute("displayItems", values);}
+       model.addAttribute("displayItems", values);
+       }
        return "catalog";
     }
 
-    @PostMapping("")
+    /*@PostMapping("")
     public String gotoCheckout(Model model) {
         return "redirect:/checkout";
+    }*/
+
+    @PostMapping("/searchProcess")
+    public String seachByName(@ModelAttribute("searchQuery") itemDetails query, Model model) {
+        String name = query.getName();
+        return "redirect:/catalog/search?name=" + name;
     }
 
     @GetMapping("/search")
     public String search(@RequestParam() String name, Model model) throws SQLException {
+        model.addAttribute("searchQuery", new itemDetails());
         ResultSet rs = SQL.itemNameSearch(name);
 
         if (rs == null)

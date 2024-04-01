@@ -26,7 +26,7 @@ public class BaseController {
     @GetMapping("/")
     public String home(Model model)
     {
-        model.addAttribute("search", new itemDetails());
+        model.addAttribute("searchQuery", new itemDetails());
         return "index";
     }
     

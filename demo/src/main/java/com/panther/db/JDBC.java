@@ -159,9 +159,10 @@ public class JDBC {
         return rs;
      }
 	 public ResultSet itemNameSearch(String itemName) {
-        String command = "SELECT * FROM items WHERE itemName LIKE ?";
+        String command = "SELECT * FROM items WHERE itemName LIKE CONCAT('%', ?, '%')";
         
-        ResultSet rs = executeQuery(command, new String[0]);
+        String[] params = {itemName};
+        ResultSet rs = executeQuery(command, params);
         return rs;
     }
 
