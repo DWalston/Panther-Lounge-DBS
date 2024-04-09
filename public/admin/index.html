@@ -1,19 +1,49 @@
 <html>
 
 <head>
-  <title>Admin Home</title>
+  <title>Panther Lounge Database</title>
+  <script src="script.js"></script>
   <script src="../script.js"></script>
   <link rel="stylesheet" href="../style.css" />
   <link rel="favicon" href="assets/lounge_logo_trans.png" />
 </head>
 
+<header id="login" style="visibility: hidden">
+  <label>
+    Username:
+    <input type="text" autocomplete="username" />
+  </label>
+  <label>
+    Password:
+    <input type="password" autocomplete="current-password" />
+  </label>
+  <button>Sign In</button>
+</header>
+
 <body class="home">
-  <a href="index.html">
-    <h1>Admin Veiw</h1>
-  </a>
-  <br />
-  <a href="items.html"> Edit and View the Catalog </a>
-  <a href="members.html"> Edit and View the Member List </a>
+  <h1>
+    Welcome to the Panther Lounge,
+    <br />
+    <span onclick="login()" id="name">click to sign in</span>.
+  </h1>
+
+  <form th:object="${searchQuery}" th:action="@{/catalog/searchProcess}" method="post">
+    <input id="searchBar" type="text" th:field="*{name}"
+      placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
+    <input type="submit" value="Go to Catalog" />
+    <br />
+    <a href="advanced.html">Advanced Search</a>
+    <a href="checkin.html">Check-In an Item</a>
+  </form>
 </body>
+
+<footer>
+  <nav>
+    <a href="https://linktr.ee/floridatechanimeclub">
+      Anime Club's Linktree
+    </a>
+    <a href="https://linktr.ee/fitssff"> FITSSFF's Linktree </a>
+  </nav>
+</footer>
 
 </html>
