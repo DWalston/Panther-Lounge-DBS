@@ -29,11 +29,6 @@ import java.time.format.DateTimeFormatter;
 
 @Controller
 public class BaseController {
-	private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
-	@Autowired
-    public BaseController(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
-       this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
-    }
     @GetMapping("/")
     public String home(Model model)
     {
@@ -57,37 +52,6 @@ public class BaseController {
     {
 	return "redirect:/";
     }
-	@GetMapping("/register")
-	public String register(Model model) {
-		memberDetails newUser = new memberDetails();
-		LocalDate today = LocalDate.now();
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-		newUser.setPhone("1111111111");
-		newUser.setClub("FITSSFF");
-        newUser.setJoined(today.format(dateFormat));
-        newUser.setMemberUntil(today.plusWeeks(52).format(dateFormat));
-		newUser.setFlag("0");
-        model.addAttribute("member", newUser);
-		return "register";
-	}
-	
-	@PostMapping("/register")
-    public String submit(@ModelAttribute("request") memberDetails member, Model model) {
-      JDBC sql = new JDBC();
-	  if(sql.addMember(member)) {
-         model.addAttribute("message", "item added successfully");
-		 UserDetails q = User.withDefaultPasswordEncoder()
-				.username(member.getId())
-				.password(member.getPassword())
-				.roles("USER")
-				.build();
-         inMemoryUserDetailsManager.createUser(q);
-	  }
-      else
-         model.addAttribute("message", "Did not add item");
-      return "status";
-	}
-
 	
 	@GetMapping("/logout")
 	public String logout()
