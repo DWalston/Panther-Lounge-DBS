@@ -2,13 +2,13 @@
 
 <head>
   <title>Panther Lounge Database</title>
-  <script src="js/script.js"></script>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="favicon" href="images/lounge_logo_trans.png" />
+  <script src="../js/script.js"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="favicon" href="../images/lounge_logo_trans.png" />
 </head>
 
 <header>
-  <h1><a href="../index">The Panther Lounge</a></h1>
+  <h1><a href="index">The Panther Lounge</a></h1>
   <input onkeyup="liveSearch('searchBar','members')" id="searchBar" type="search" placeholder="Search for members" />
 </header>
 
@@ -30,14 +30,7 @@
 </body>
 
 <footer>
-  <label for="addMember"> Add a member </label>
-  <form id="addMember">
-    <input placeholder="name" type="text" id="name" />
-    <input placeholder="username" type="text" id="username" />
-    <input placeholder="expiration" type="text" id="expiration" />
-    <input placeholder="club" type="text" id="club" />
-    <input type="submit" />
-  </form>
+  <a href="/admin/register"> Add a member </a>
 </footer>
 
 </html>
