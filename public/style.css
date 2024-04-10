@@ -53,6 +53,16 @@ form {
   width: 75%;
 }
 
+form #searchBar {
+  border-radius: 5px;
+  box-shadow: 5px 5px;
+  display: inline;
+  margin: auto;
+  padding: 10px;
+  transition: 1s;
+  min-width: 75%;
+}
+
 header {
   background-color: lightCoral;
   border-bottom: solid;
@@ -175,7 +185,7 @@ select {
 }
 
 .catalog {
-  margin-top: 125px;
+  margin-top: 150px;
 }
 
 .home {
@@ -275,16 +285,6 @@ select {
   -webkit-mask: repeat left center/20% url(assets/rating.png);
 }
 
-#searchBar {
-  border-radius: 5px;
-  box-shadow: 5px 5px;
-  display: inline;
-  margin: auto;
-  padding: 10px;
-  transition: 1s;
-  width: 75%;
-}
-
 #searchBar:focus {
   box-shadow: none;
 }
@@ -299,7 +299,6 @@ select {
   transition: 1s;
   width: 75%;
 }
-
 
 #searchQ:focus {
   box-shadow: none;
