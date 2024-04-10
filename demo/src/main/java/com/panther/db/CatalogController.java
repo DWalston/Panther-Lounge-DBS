@@ -129,4 +129,10 @@ public class CatalogController {
        model.addAttribute("displayItems", values);}
        return "catalog";
     }
+
+    @GetMapping("/advanced")
+    public String advanced(Model model) {
+        model.addAttribute("search", new itemDetails());
+        return "advanced";
+    }
 }

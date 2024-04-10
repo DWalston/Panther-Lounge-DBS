@@ -38,9 +38,11 @@
    <form th:object="${searchQuery}" th:action="@{/catalog/searchProcess}" method="post">
          <input id="searchBar" type="text" th:field="*{name}"
             placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
-        <a> <button onclick="submit">Search</button> </a>
+        <button onclick="submit">Search</button>
       <br />
-      <a href="advanced.html">Advanced Search</a>
+      <a href="catalog">View Entire Catalog</a>
+      <a href="catalog/advanced">Advanced Search</a>
+
    </form>
 </body>
 

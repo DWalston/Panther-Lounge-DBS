@@ -1,27 +1,22 @@
-<html>
+<html class="catalog">
 
 <head>
-   <title>
-      Panther Lounge Database
-   </title>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-   <script type="text/javascript" th:src="@{../js/script.js}"></script>
-   <script type="text/javascript" th:src="@{/tablePopulate.js}"></script>
-   <link rel="stylesheet" href="../css/style.css">
-   <link rel="favicon" th:href="@{/images/lounge_logo_trans.png}">
+  <title>Catalog</title>
+  <script src="../js/script.js"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="favicon" href="../images/lounge_logo_trans.png" />
 </head>
 
 <header>
-   <form th:object="${searchQuery}" th:action="@{/catalog/searchProcess}" method="post">
-      <input id="searchBar" type="text" th:field="*{name}"
-         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
-   </form>
+  <h1><a href="index">The Panther Lounge</a></h1>
+  <form th:object="${searchQuery}" th:action="@{/catalog/searchProcess}" method="post">
+    <input id="searchBar" type="text" th:field="*{name}"
+      placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
+    <input type="submit" value="Search" />
+  </form>
 </header>
 
 <body onload="check()">
-   <input id="searchBar" type="text" onclick="searchFor()"
-      placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards...">
-
       <table id="catalog">
          <colgroup>
             <col id="itemName" span="1" />

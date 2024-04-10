@@ -1,45 +1,59 @@
-<html>
+<html class="catalog">
 
 <head>
-   <title>
-      Panther Lounge Database
-   </title>
-   <script src="script.js">
-   </script>
-   <link rel="stylesheet" href="style.css">
-   <link rel="favicon" th:href="@{/images/lounge_logo_trans.png}">
+  <title>Check-In</title>
+  <script src="../js/script.js"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="favicon" href="assets/lounge_logo_trans.png" />
 </head>
 
 <header>
-   <a href="index">
-      <img class="logo" src="../images/lounge_logo_trans.png" />
-      <h1>The Panther Lounge</h1>
-   </a>
-
-   <form>
-      <!-- send submission to search bar in the catalog section -->
-      <input id="searchQ" type="text"
-         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
-      <a href="catalog.html">
-         <button onclick="catalog()" type="submit">⌕</button>
-      </a>
-   </form>
+  <h1><a href="index">The Panther Lounge</a></h1>
+  <input type="submit" value="Contact" />
+  <label for="library">the</label>
+  <select name="library">
+    <option value="anime">Anime Club</option>
+    <option value="fitssff">FITSSFF</option>
+  </select>
+  <label for="library">librarian</label>
 </header>
 
 <body>
-   <form method="POST" th:action="@{/checkin}" th:object="${request}">
-    <div class="halfleft">
-        <input placeholder="Item ID" id="itemID" th:field="*{itemID}" />
-    </div>
-
-    <div>   
-         By submitting this form, I, <input id="name" />, student number <input readonly id="ID" type="text" th:field="*{memberID}"/>,
-         agree i am returning <input readonly id="itemName" /> on <input readonly type="text" id="coDate" th:field="*{returnDate}"/>,
-      </div>
-
-   capiche?
-   <button><input type="submit" value="capiche."></button>
-   </form>
+  <table>
+    <tr id="header">
+      <th>Name</th>
+      <th>ID</th>
+      <th>Condition</th>
+      <th>Checkout Date</th>
+      <th>Due Date</th>
+      <th>Check In</th>
+    </tr>
+    <tr class="checkedOutItem">
+      <td>Lord of the Rings</td>
+      <td>042069</td>
+      <td>Good</td>
+      <td>Nov 13, 1987</td>
+      <td>Nov 27, 1987</td>
+      <td>
+        <input type="submit" value="Check In" />
+      </td>
+    </tr>
+    <tr class="overdueItem">
+      <td>Lord of the Swings</td>
+      <td>042070</td>
+      <td>Mint</td>
+      <td>Nov 13, 1987</td>
+      <td>Nov 27, 1987</td>
+      <td><input type="submit" value="Check In" /></td>
+    </tr>
+  </table>
 </body>
+
+<footer id="boxes">
+  <input id="checkedOut" onclick="rowVis('checkedOutItem')" type="checkbox" checked />
+  <label for="checkedOut"> Checked-Out Items </label>
+  <input id="overdue" onclick="rowVis('overdueItem')" type="checkbox" checked />
+  <label for="overdue"> Overdue Items </label>
+</footer>
 
 </html>
