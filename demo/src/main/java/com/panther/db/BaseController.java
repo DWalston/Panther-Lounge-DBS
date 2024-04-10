@@ -62,7 +62,7 @@ public class BaseController {
 		memberDetails newUser = new memberDetails();
 		LocalDate today = LocalDate.now();
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-		newUser.setPhone("8139512605");
+		newUser.setPhone("1111111111");
 		newUser.setClub("FITSSFF");
         newUser.setJoined(today.format(dateFormat));
         newUser.setMemberUntil(today.plusWeeks(52).format(dateFormat));

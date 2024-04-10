@@ -50,24 +50,34 @@ public class WebSecurityConfig {
 		String userID = "";
 		String userPW = "";
 		ResultSet rs = SQL.search(tableName);
+		ResultSet admins = SQL.search("admin");
+		List<String> adminIds = new ArrayList<>();
+		while (admins.next()) {
+		adminIds.add(admins.getString("id"));
+		}
 		List<UserDetails> values = new ArrayList<>();
 		while (rs.next()) {
          userID = rs.getString("id");
          userPW = rs.getString("password");
-		 UserDetails member = User
+		 UserDetails member;
+		if (adminIds.contains(userID)) {
+			member = User
+				.withUsername(userID)
+				.password("{bcrypt}"+userPW)
+				.roles("USER","ADMIN")
+				.build();
+		}
+		else {
+			member = User
 				.withUsername(userID)
 				.password("{bcrypt}"+userPW)
 				.roles("USER")
 				.build();
+		}
 		 values.add(member);
+
         }
         rs.close();
-		UserDetails admin =
-			 User.withUsername("admin")
-				.password(encoder.encode(("420")))
-				.roles("USER","ADMIN")
-				.build();
-		values.add(admin);
 		UserDetails[] up = new UserDetails[values.size()];
 		for (int k = 0; k < values.size(); k++) {
 			up[k] = values.get(k);
