@@ -1,58 +1,20 @@
-<!DOCTYPE html>
-
 <html>
 
 <head>
-   <title>
-      Panther Lounge Database
-   </title>
-   <script src="script.js">
-   </script>
-   <link rel="stylesheet" href="style.css">
-   <link rel="favicon" th:href="@{/images/lounge_logo_trans.png}">
+  <title>Panther Lounge Database</title>
+  <script src="js/script.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="favicon" href="images/lounge_logo_trans.png" />
 </head>
 
-<header>
-   <a href="index">
-      <img class="logo" th:src="@{/images/lounge_logo_trans.png}" /> 
-      <h1>
-         The Panther Lounge
-      </h1>
-   </a>
-   <br>
-
-   <div class="links">
-      <input id="userName" type="text" placeholder="username">
-      <input id="pass" type="text" placeholder="password">
-      <a href="signin">
-         <button type="submit">
-            Sign in
-         </button>
-         <br>
-      </a>
-      <a href="https://linktr.ee/fitssff">
-         FITSSFF's Linktree
-      </a>
-
-      <a href="https://linktr.ee/floridatechanimeclub
-   ">
-         Anime Club's Linktree
-      </a>
-
-      <a href="checkout">
-         Check out an Item
-      </a>
-   </div>
-</header>
-
-<body>
-   <div>
-      <a href="admin/add">
-         <button type="submit">
-            add item
-         </button>
-      </a>
-   </div>
+<body class="home">
+  <a href="../index">
+    <h1>Admin View</h1>
+  </a>
+  <br />
+  <a href="add"> Edit and View the Catalog </a>
+  <a href="member"> Edit and View the Member List </a>
+  <a href="items"> View checked out items</a>
 </body>
 
 </html>

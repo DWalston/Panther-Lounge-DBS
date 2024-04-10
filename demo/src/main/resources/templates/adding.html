@@ -1,67 +1,99 @@
-<!DOCTYPE html> 
-
-<html> 
+<html class="catalog">
 
 <head>
-   <title>
-      Panther Lounge Database
-   </title>
-   <script src="script.js">
-   </script>
-   <link rel="stylesheet" href="style.css">
-   <link rel="favicon" th:href="@{/images/lounge_logo_trans.png}">
+  <title>Panther Lounge Database</title>
+  <script src="../script.js"></script>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="favicon" href="assets/lounge_logo_trans.png" />
 </head>
 
+<header>
+  <h1><a href="index.html">The Panther Lounge</a></h1>
+</header>
+
 <body>
-   <div>
-      <table>
-      <form method="POST" th:action="@{/admin/add}" th:object="${item}"> 
-         <tr>
-            <td>
-               <label for="item">Name:</label><br/>
-               <input type="text" th:field="*{name}"/>
-            </td>
-            <td>
-               <label for="item">Type:</label><br/> 
-               <input type="text" th:field="*{type}"/>
-            </td>
-            <td>
-               <label for="item">Club:</label><br/>
-               <input type="text" th:field="*{club}"/>
-            </td>
-            <td>
-               <label for="item">Shelf:</label><br/>
-               <input type="text" th:field="*{shelf}"/>
-            </td>
-            <td>
-               <label for="item">ID:</label><br/>
-               <input type="text" th:field="*{id}"/>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <label for="item">Series:</label><br/>
-               <input type="text" th:field="*{series}"/>
-            </td>
-            <td>
-               <label for="item">Status:</label><br/>
-               <input type="text" th:field="*{status}"/>
-            </td>
-            <td>
-               <label for="item">Rating:</label><br/>
-               <input type="text" th:field="*{rating}"/>
-            </td>
-            <td>
-               <label for="item">Description:</label><br/>
-               <input type="text" th:field="*{desc}"/>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <input type="submit" value="Register"/> 
-            </td>
-         </tr>
-      </form>
-      </table>
-   </div>
+  change embed link to actual site
+  lock this on the right side of the page
+  <embed
+    src="https://htmlpreview.github.io/?https://raw.githubusercontent.com/DWalston/Panther-Lounge-DBS/frontend/public/catalog.html"
+    style="width:500px; height: 300px;">
+
+  <h2>
+    Edit Items
+  </h2>
+  <label for="editItem"> Edit an item </label>
+  <form id="editItem">
+    <input placeholder="ID" type="text" id="editID" />
+    <input placeholder="Name" type="text" id="editName" />
+    <input placeholder="Type" type="text" id="editType" />
+    <select name="Club" id="editClub">
+      <option disabled selected="selected">Club</option>
+      <option value="anime">Anime Club</option>
+      <option value="fitssff">FITSSFF</option>
+    </select>
+    <input placeholder="Location" type="text" id="editLocation" />
+    <input placeholder="Series" type="text" id="editSeries" />
+    <input placeholder="Status" type="text" id="editStatus" />
+    <input placeholder="Rating" type="text" id="editRating" />
+    <input placeholder="Description" type="text" id="editDescription" />
+    <input type="submit" />
+  </form>
+
+  <h2>
+    Add Items
+  </h2>
+
+  <label for="addItem"> Add an item </label>
+  <form id="addItem">
+    <input placeholder="ID" type="text" id="addID" />
+    <input placeholder="name" type="text" id="addName" />
+    <input placeholder="type" type="text" id="addType" />
+    <select name="Club" id="addClub">
+      <option disabled selected="selected">Club</option>
+      <option value="anime">Anime Club</option>
+      <option value="fitssff">FITSSFF</option>
+    </select>
+    <input placeholder="location" type="text" id="addLocation" />
+    <input placeholder="series" type="text" id="addSeries" />
+    <input placeholder="status" type="text" id="addStatus" />
+    <input placeholder="rating" type="text" id="addScoreRating" />
+    <input placeholder="description" type="text" id="addDescription" />
+    <input type="submit" />
+  </form>
+
+  <label for="addMultiple"> Add multiple items </label>
+  <form id="addMultiple">
+    <input type="file" id="addFile" name="filename" accept=".csv" multiple />
+  </form>
+
+  <h2>
+    Remove Items
+  </h2>
+
+  <label for="removeItem"> Remove an item </label>
+  <form id="removeItem">
+    <input placeholder="ID" type="text" id="removeID" />
+    <input placeholder="name" type="text" id="removeName" />
+    <input placeholder="type" type="text" id="removeType" />
+    <select name="Club" id="removeClub">
+      <option disabled selected="selected">Club</option>
+      <option value="anime">Anime Club</option>
+      <option value="fitssff">FITSSFF</option>
+    </select>
+    <input placeholder="location" type="text" id="removeLocation" />
+    <input placeholder="series" type="text" id="removeSeries" />
+    <input placeholder="status" type="text" id="removeStatus" />
+    <input placeholder="rating" type="text" id="removeScoreRating" />
+    <input placeholder="description" type="text" id="removeDescription" />
+    <input type="submit" />
+  </form>
+
+  <label for="removeMultiple"> Remove multiple items </label>
+  <form id="removeMultiple">
+    <input type="file" id="removeFile" name="filename" accept=".csv" multiple />
+  </form>
+
+  <input type="submit" />
 </body>
+
+</html>

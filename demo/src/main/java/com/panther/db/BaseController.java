@@ -40,6 +40,11 @@ public class BaseController {
         model.addAttribute("searchQuery", new itemDetails());
         return "index";
     }
+    @GetMapping("/index")
+    public String homeTwo()
+    {
+        return "redirect:/";
+    }
     
     @PostMapping("/")
     public String home(@ModelAttribute("search") itemDetails search) {

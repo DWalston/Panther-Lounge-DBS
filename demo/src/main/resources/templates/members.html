@@ -1,0 +1,43 @@
+<html class="catalog">
+
+<head>
+  <title>Panther Lounge Database</title>
+  <script src="js/script.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="favicon" href="images/lounge_logo_trans.png" />
+</head>
+
+<header>
+  <h1><a href="../index">The Panther Lounge</a></h1>
+  <input onkeyup="liveSearch('searchBar','members')" id="searchBar" type="search" placeholder="Search for members" />
+</header>
+
+<body>
+  <table id="members">
+    <tr id="header">
+      <th>Name</th>
+      <th>Username</th>
+      <th>Member Expiration</th>
+      <th>Club(s)</th>
+    </tr>
+    <tr th:each="member : ${memberList}">
+        <td><span th:text="${member.name}" >MEMBER.NAME</span></td>
+        <td><span th:text="${member.discord}" >MEMBER.DISCORD</span></td>
+        <td><span th:text="${member.memberUntil}" >MEMBER.UNTIL</span></td>
+        <td><span th:text="${member.club}" >MEMBER.CLUB</span></td>
+    </tr>
+  </table>
+</body>
+
+<footer>
+  <label for="addMember"> Add a member </label>
+  <form id="addMember">
+    <input placeholder="name" type="text" id="name" />
+    <input placeholder="username" type="text" id="username" />
+    <input placeholder="expiration" type="text" id="expiration" />
+    <input placeholder="club" type="text" id="club" />
+    <input type="submit" />
+  </form>
+</footer>
+
+</html>
