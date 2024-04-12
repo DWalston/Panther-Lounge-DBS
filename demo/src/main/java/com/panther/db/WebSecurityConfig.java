@@ -28,7 +28,7 @@ public class WebSecurityConfig {
 			.authorizeHttpRequests((requests) -> requests
 			.requestMatchers("/adminBase", "/admin/**").hasRole("ADMIN")
 			.requestMatchers("/checkout", "/advanced", "/checkin").hasRole("USER")
-				.requestMatchers("/", "/index","/static/**", "/catalog/**", "/css/**", "/js/**", "/register", "/search").permitAll()
+				.requestMatchers("/", "/index","/static/**", "/catalog", "/css/**", "/fonts/**", "/js/**", "/register", "/search", "/catalog/**").permitAll()
 				.anyRequest().authenticated()
 			)
 			.formLogin((form) -> form
@@ -53,7 +53,7 @@ public class WebSecurityConfig {
 		ResultSet admins = SQL.search("admin");
 		List<String> adminIds = new ArrayList<>();
 		while (admins.next()) {
-		adminIds.add(admins.getString("id"));
+			adminIds.add(admins.getString("id"));
 		}
 		List<UserDetails> values = new ArrayList<>();
 		while (rs.next()) {

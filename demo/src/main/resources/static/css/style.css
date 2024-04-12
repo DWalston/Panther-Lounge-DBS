@@ -311,15 +311,15 @@ a {
  
  @font-face {
    font-family: Leap;
-   src: url(fonts/Leap.otf);
+   src: url('../fonts/Leap.otf');
  }
  
  @font-face {
    font-family: Galgo;
-   src: url(fonts/Galgo.ttf);
+   src: url('../fonts/Galgo.ttf');
  }
  
  @font-face {
    font-family: Noto Sans Mono;
-   src: url(fonts/NotoSansMono-VariableFont_wdth\wght.ttf);
+   src: url('../fonts/NotoSansMono-VariableFont_wdth,wght.ttf');
  }
