@@ -56,11 +56,11 @@ public class adminController {
          message = "Item added Successfully";
       else
          message = "Error: Item not added";
-      return "redirect:/edit?message=" + message;
+      return "redirect:/admin/edit?message=" + message;
    }
 
    @GetMapping("/member")
-   public String memberGet(Model model) throws SQLException {
+   public String memberGet(@RequestParam(defaultValue = "") String message, Model model) throws SQLException {
        ResultSet rs = SQL.search("`member`");
        if (rs == null)
            model.addAttribute("memberList", new ArrayList<>());
@@ -105,8 +105,9 @@ public class adminController {
 	@PostMapping("/register")
     public String submit(@ModelAttribute("request") memberDetails member, Model model) {
       JDBC sql = new JDBC();
+      String message;
 	  if(sql.addMember(member)) {
-         model.addAttribute("message", "item added successfully");
+         message = "item added successfully";
 		 UserDetails q = User.withDefaultPasswordEncoder()
 				.username(member.getId())
 				.password(member.getPassword())
@@ -115,7 +116,7 @@ public class adminController {
          inMemoryUserDetailsManager.createUser(q);
 	  }
       else
-         model.addAttribute("message", "Did not add item");
-      return "status";
+         message = "Error: did not add item";
+      return "redirect:/admin/member?message=" + message;
 	}
 }

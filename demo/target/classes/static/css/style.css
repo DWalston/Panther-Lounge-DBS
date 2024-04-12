@@ -1,7 +1,7 @@
 a {
    color: black;
    font-weight: bold;
-   margin: 10px;
+   margin: 20px;
    padding: 5px;
    text-decoration: none;
    transition: 0.5s;
@@ -146,7 +146,11 @@ a {
  }
  
  td {
+   background-color: white;
    padding: 10px;
+   border:none;
+   border-radius: 10px;
+   padding: 5px;
  }
  
  th {
