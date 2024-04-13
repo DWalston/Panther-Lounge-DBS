@@ -61,7 +61,8 @@ public class adminController {
 
    @GetMapping("/member")
    public String memberGet(@RequestParam(defaultValue = "") String message, Model model) throws SQLException {
-       ResultSet rs = SQL.search("`member`");
+      model.addAttribute("message", message);
+      ResultSet rs = SQL.search("`member`");
        if (rs == null)
            model.addAttribute("memberList", new ArrayList<>());
        else {

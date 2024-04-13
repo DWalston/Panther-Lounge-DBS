@@ -17,7 +17,10 @@
       Register New Account
       <br>
    </h1>
-	  <form method="POST" th:action="@{/register}" th:object="${member}"> 
+	  <form method="POST" th:action="@{/admin/register}" th:object="${member}"> 
+       <h2 th:text="${message}"> 
+         <span>message will print here</span> 
+       </h2>  
          <tr>
 			<td>
                <label for="member">ID:</label><br/>
