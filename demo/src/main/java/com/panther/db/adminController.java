@@ -45,14 +45,14 @@ public class adminController {
    public String get(@RequestParam(defaultValue = "") String message, Model model) {
       model.addAttribute("message", message);
       model.addAttribute("add", new itemDetails());
+      model.addAttribute("add", new itemDetails());
       return "adding";
    }
    
    @PostMapping("/edit/add")
    public String post(@ModelAttribute("item") itemDetails item, Model model) {
-      JDBC sql = new JDBC();
       String message;
-      if(sql.addItem(item))
+      if(SQL.addItem(item))
          message = "Item added Successfully";
       else
          message = "Error: Item not added";
@@ -105,9 +105,8 @@ public class adminController {
 	
 	@PostMapping("/register")
     public String submit(@ModelAttribute("request") memberDetails member, Model model) {
-      JDBC sql = new JDBC();
       String message;
-	  if(sql.addMember(member)) {
+	  if(SQL.addMember(member)) {
          message = "item added successfully";
 		 UserDetails q = User.withDefaultPasswordEncoder()
 				.username(member.getId())

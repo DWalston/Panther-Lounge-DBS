@@ -57,7 +57,7 @@ public class CatalogController {
          item.setRating(rs.getString("rating")
                           .toString()
                           .trim());
-         item.setDesc(rs.getString("descript")
+         item.setDescription(rs.getString("description")
                         .toString()
                         .trim());
          item.setClub(rs.getString("club")
@@ -114,7 +114,7 @@ public class CatalogController {
          item.setRating(rs.getString("rating")
                           .toString()
                           .trim());
-         item.setDesc(rs.getString("descript")
+         item.setDescription(rs.getString("description")
                         .toString()
                         .trim());
          item.setClub(rs.getString("club")

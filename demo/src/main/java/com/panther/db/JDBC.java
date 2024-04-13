@@ -56,7 +56,7 @@ public class JDBC {
        values[5] = item.getSeries();
        values[6] = item.getStatus();
        values[7] = item.getRating();
-       values[8] = item.getDesc();
+       values[8] = item.getDescription();
        
        if (executeUpdate(command, values))
           return true;

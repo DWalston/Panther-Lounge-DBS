@@ -54,8 +54,8 @@ public class DBController {
                rs.getString("rating")
                    .toString()
                    .trim());
-         jsonobj.put("desc",
-               rs.getString("descript")
+         jsonobj.put("description",
+               rs.getString("description")
                    .toString()
                    .trim());
          values.put(jsonobj);
@@ -100,8 +100,8 @@ public class DBController {
                rs.getString("rating")
                    .toString()
                    .trim());
-         jsonobj.put("desc",
-               rs.getString("descript")
+         jsonobj.put("description",
+               rs.getString("description")
                    .toString()
                    .trim());
          values.put(jsonobj);
