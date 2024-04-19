@@ -29,10 +29,10 @@
 
 <body class="home">
    <h1>
-      Welcome to the Panther Lounge <span th:remove="tag" sec:authentication="name"></span>
+      Welcome to the Panther Lounge!
       <br>
-      <span onclick="login()" sec:authorize="!isAuthenticated()" id="name">click to sign in.</span>
-	  <span onclick="login()" sec:authorize="isAuthenticated()" id="name">click to sign out.</span>
+      <span onclick="login()" sec:authorize="!isAuthenticated()" id="name">You are currently not signed in. Please click to sign in.</span>
+	  <span onclick="login()" sec:authorize="isAuthenticated()" id="name">If you are done, click to sign out.</span>
    </h1>
 
    <form th:object="${searchQuery}" th:action="@{/catalog/searchProcess}" method="post">
@@ -42,6 +42,7 @@
       <br />
       <a href="catalog">View Entire Catalog</a>
       <a href="catalog/advanced">Advanced Search</a>
+	  <a href="admin" sec:authorize="hasRole('ADMIN')">Admin Page</a>
 
    </form>
    <a href="checkout" sec:authorize="isAuthenticated()">Check out an item</a>

@@ -11,7 +11,7 @@ public class itemDetails {
    String series;
    String status;
    String rating;
-   String desc;
+   String description;
    String club;
    String other;
 }

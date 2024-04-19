@@ -46,6 +46,7 @@ public class adminController {
    public String get(@RequestParam(defaultValue = "") String message, Model model) {
       model.addAttribute("message", message);
       model.addAttribute("add", new itemDetails());
+      model.addAttribute("add", new itemDetails());
       return "adding";
    }
    

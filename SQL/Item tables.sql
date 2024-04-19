@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS items (
     series VARCHAR(64),
     itemStatus INT,
     rating INT,
-    descript VARCHAR(1024),
+    description VARCHAR(1024),
     CONSTRAINT PRIMARY KEY (id)
 );
     
