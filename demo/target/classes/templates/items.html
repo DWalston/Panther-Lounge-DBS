@@ -1,0 +1,36 @@
+<html class="catalog">
+
+<head>
+  <title>Panther Lounge Database</title>
+  <script src="../js/script.js"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="favicon" href="../images/lounge_logo_trans.png" />
+</head>
+
+<header>
+  <h1><a href="/index">The Panther Lounge</a></h1>
+  <input onkeyup="liveSearch('searchBar','members')" id="searchBar" type="search" placeholder="Search for members" />
+</header>
+
+<body>
+  <table id="members">
+    <tr id="header">
+      <th>Item ID</th>
+      <th>Item Name</th>
+      <th>Member ID</th>
+      <th>Checkout Date</th>
+      <th>Returned</th>
+      <th>Return by / Returned Date</th>
+    </tr>
+    <tr th:each="item : ${displayItems}">
+        <td><span th:text="${item.itemID}" >ITEM>ITEMID</span></td>
+        <td><span th:text="${item.itemName}" >ITEM.NAME</span></td>
+        <td><span th:text="${item.memberID}" >MEMBER.ID</span></td>
+        <td><span th:text="${item.codate}" >ITEM.CODATE</span></td>
+        <td><span th:text="${item.returned}">ITEM.RETURNED</span></td>
+        <td><span th:text="${item.returnDate}" >ITEM.RETURN</span></td>
+    </tr>
+  </table>
+</body>
+
+</html>

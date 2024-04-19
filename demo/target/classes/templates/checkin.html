@@ -4,7 +4,7 @@
   <title>Check-In</title>
   <script src="../js/script.js"></script>
   <link rel="stylesheet" href="../css/style.css" />
-  <link rel="favicon" href="assets/lounge_logo_trans.png" />
+  <link rel="favicon" href="../images/lounge_logo_trans.png" />
 </head>
 
 <header>
@@ -21,31 +21,22 @@
 <body>
   <table>
     <tr id="header">
-      <th>Name</th>
       <th>ID</th>
-      <th>Condition</th>
+      <th>Name</th>
       <th>Checkout Date</th>
       <th>Due Date</th>
       <th>Check In</th>
     </tr>
-    <tr class="checkedOutItem">
-      <td>Lord of the Rings</td>
-      <td>042069</td>
-      <td>Good</td>
-      <td>Nov 13, 1987</td>
-      <td>Nov 27, 1987</td>
-      <td>
-        <input type="submit" value="Check In" />
+    <tr th:each="item : ${displayItems}">
+      <td><span th:text="${item.itemID}" >ITEM.ID</span></td>
+      <td><span th:text="${item.itemName}" >ITEM.NAME</span></td>
+      <td><span th:text="${item.codate}" >ITEM.CODATE</span>
+      <td><span th:text="${item.returnDate}" >ITEM.RETURNDATE</span>
+      <td><a th:href="@{/checkin/confirm(id=${item.itemID})}">
+          <button>Return</button>
+      </a></td>
       </td>
-    </tr>
-    <tr class="overdueItem">
-      <td>Lord of the Swings</td>
-      <td>042070</td>
-      <td>Mint</td>
-      <td>Nov 13, 1987</td>
-      <td>Nov 27, 1987</td>
-      <td><input type="submit" value="Check In" /></td>
-    </tr>
+  </tr>
   </table>
 </body>
 

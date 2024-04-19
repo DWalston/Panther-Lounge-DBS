@@ -8,6 +8,8 @@ import java.time.LocalDate;
 public class checkoutForm {
     String memberID;
     String itemID;
+    String itemName;
     String codate;
     String returnDate;
+    String returned;
 }

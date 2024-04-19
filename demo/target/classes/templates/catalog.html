@@ -8,7 +8,7 @@
 </head>
 
 <header>
-  <h1><a href="index">The Panther Lounge</a></h1>
+  <h1><a href="/index">The Panther Lounge</a></h1>
   <form th:object="${searchQuery}" th:action="@{/catalog/searchProcess}" method="post">
     <input id="searchBar" type="text" th:field="*{name}"
       placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
@@ -19,6 +19,7 @@
 <body onload="check()">
       <table id="catalog">
          <colgroup>
+            <col id="itemID" span="1" />
             <col id="itemName" span="1" />
             <col id="itemType" span="1" />
             <col id="itemSeries" span="1" />
@@ -30,6 +31,7 @@
             <col id="itemOther" span="1" />
          </colgroup>
             <tr id="header">
+               <th>ID</th>
                <th>Name</th>
                <th>Type</th>
                <th>Series</th>
@@ -41,6 +43,7 @@
                <!-- remember to add specific information for certain item types -->
             </tr>
             <tr th:each="item : ${displayItems}">
+               <td><span th:text="${item.id}">ITEM.ID</span></td>
                <td><span th:text="${item.name}" >ITEM.NAME</span></td>
                <td><span th:text="${item.type}" >ITEM.TYPE</span></td>
                <td><span th:text="${item.series}" >ITEM.SERIES</span></td>
@@ -54,6 +57,8 @@
 </body>
 
 <footer id="boxes">
+   <input id="itemIDBox" onclick="columnVis('itemID')" type="checkbox" />
+   <label for="itemIDBox"> ID </label>
    <input id="itemNameBox" onclick="columnVis2('itemName')" type="checkbox" />
    <label for="itemNameBox"> Name </label>
    <input id="itemTypeBox" onclick="columnVis('itemType')" type="checkbox" />

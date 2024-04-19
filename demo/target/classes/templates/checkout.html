@@ -1,45 +1,31 @@
-<html>
+<html class="catalog">
 
 <head>
-   <title>
-      Panther Lounge Database
-   </title>
-   <script src="../js/script.js">
-   </script>
-   <link rel="stylesheet" href="../css/style.css">
-   <link rel="favicon" th:href="@{/images/lounge_logo_trans.png}">
+   <title>Check-Out</title>
+   <script src="../js/script.js"></script>
+   <link rel="stylesheet" href="../css/style.css" />
+   <link rel="favicon" href="../images/lounge_logo_trans.png" />
 </head>
 
 <header>
-   <a href="index">
-      <img class="logo" src="../images/lounge_logo_trans.png" />
-      <h1>The Panther Lounge</h1>
-   </a>
-
-   <form>
-      <!-- send submission to search bar in the catalog section -->
-      <input id="searchQ" type="text"
-         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
-      <a href="catalog.html">
-         <button onclick="catalog()" type="submit">⌕</button>
-      </a>
-   </form>
+   <h1><a href="index">The Panther Lounge</a></h1>
+   <form th:object="${searchQuery}" th:action="@{/catalog/searchProcess}" method="post">
+      <input id="searchBar" type="text" th:field="*{name}"
+        placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
+      <input type="submit" value="Search" />
+    </form>
 </header>
 
 <body>
-   <form method="POST" th:action="@{/checkout}" th:object="${request}">
-      <div class="halfleft">
-         <input placeholder="Item ID" id="itemID" type="text" th:field="*{itemID}"/>
-      </div>
-      
-      <div>   
-         By submitting this form, I, <input id="name" />, student number <input readonly id="ID" type="text" th:field="*{memberID}"/>,
-         agree to checkout <input readonly id="itemName" /> on <input readonly type="text" id="coDate" th:field="*{codate}"/>,
-         and will return it by <input readonly type="date" id="ciDate" th:field="*{returnDate}"/>.
-      </div>
+   <form th:object="${request}" th:action="@{/checkout}" method="post">
+   <input placeholder="Item ID" id="itemID" th:field="*{itemID}"/>
+   <div>
+      By submitting this form, I, <input readonly id="name" th:field="*{memberID}"/> agree to checkout
+      <input readonly id="itemName" /> on <input readonly id="coDate" th:field="*{codate}"/>,
+      and will return it by <input readonly id="ciDate" th:field="*{returnDate}"/>.
+   </div>
 
-   capiche?
-   <button><input type="submit" value="capiche."></button>
+   <input type="submit" value="I agree and understand to these terms" />
    </form>
 </body>
 

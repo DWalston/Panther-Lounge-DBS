@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import com.panther.details.itemDetails;
+import com.fasterxml.jackson.databind.JsonSerializable.Base;
 import com.panther.details.checkoutForm;
 import com.panther.details.memberDetails;
 import org.springframework.security.core.userdetails.User;
@@ -21,14 +22,26 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.web.bind.annotation.SessionAttributes; 
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.ArrayList;
+import java.sql.SQLException;
+import java.sql.ResultSet;
 
 @Controller
 public class BaseController {
+
+    JDBC SQL;
+    public BaseController() throws SQLException{
+        SQL = new JDBC();
+    }
+
     @GetMapping("/")
     public String home(Model model)
     {
@@ -61,11 +74,13 @@ public class BaseController {
     
     @GetMapping("/checkout")
     public String checkout(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentName = authentication.getName();
+       model.addAttribute("searchQuery", new itemDetails());
        checkoutForm request = new checkoutForm();
        LocalDate today = LocalDate.now();
        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d MMM uuuu");
-       request.setMemberID("903943025");
-       request.setItemID("21836");
+       request.setMemberID(currentName);
        request.setCodate(today.format(dateFormat));
        request.setReturnDate(today.plusWeeks(2).format(dateFormat));
        model.addAttribute("request", request);
@@ -73,9 +88,8 @@ public class BaseController {
     }
     
     @PostMapping("/checkout")
-    public String submit(@ModelAttribute("request") checkoutForm request, Model model) {
-      JDBC sql = new JDBC();
-      if(sql.addCheckout(request))
+    public String submit(@ModelAttribute("request") checkoutForm request, Model model) throws SQLException {
+      if(SQL.addCheckout(request))
          model.addAttribute("message", "item added successfully");
       else
          model.addAttribute("message", "Did not add item");
@@ -83,21 +97,53 @@ public class BaseController {
     }
 
     @GetMapping("/checkin")
-    public String checkin(Model model) {
-       checkoutForm test = new checkoutForm();
-       LocalDate today = LocalDate.now();
-       DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d MMM uuuu");
-       test.setMemberID("903943025");
-       test.setItemID("21836");
-       test.setReturnDate(today.format(dateFormat));
-       model.addAttribute("request", test);
+    public String checkin(Model model) throws SQLException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentName = authentication.getName();
+        ResultSet rs = SQL.findCOItems(currentName);
+
+        if (rs == null)
+           model.addAttribute("displayItems", new ArrayList<>());
+       else {
+       List<checkoutForm> values = new ArrayList<>();
+       while (rs.next()) {
+         checkoutForm item = new checkoutForm();
+         String itemId = rs.getString("itemId")
+                           .toString()
+                           .trim();
+         item.setItemID(itemId);
+         item.setCodate(rs.getString("coDate")
+                          .toString()
+                          .trim());
+         item.setReturnDate(rs.getString("returnDate")
+                              .toString()
+                              .trim());
+         item.setItemName(SQL.getItemName(item.getItemID()));
+         values.add(item);
+        }
+       rs.close();
+       model.addAttribute("displayItems", values);}
        return "checkin";
     }
 
-    @PostMapping("/checkin")
+    @GetMapping("/checkin/confirm")
+    public String returnForm(@RequestParam() String id, Model model) throws SQLException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentName = authentication.getName();
+        checkoutForm test = new checkoutForm();
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d MMM uuuu");
+        test.setMemberID(currentName);
+        test.setItemID(id);
+        test.setItemName(SQL.getItemName(id));
+        test.setReturnDate(today.format(dateFormat));
+        model.addAttribute("request", test);
+        return "checkinForm";
+    }
+
+    @PostMapping("/checkin/confirm")
     public String itemReturn(@ModelAttribute("request") checkoutForm request, Model model) {
-      JDBC sql = new JDBC();
-      if(sql.returnItem(request.getMemberID(), request.getItemID()))
+      if(SQL.returnItem(request.getMemberID(), request.getItemID()))
          model.addAttribute("message", "item added successfully");
       else
          model.addAttribute("message", "Did not add item");

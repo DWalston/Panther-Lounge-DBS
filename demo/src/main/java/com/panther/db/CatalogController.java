@@ -26,8 +26,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/catalog")
 public class CatalogController {
-    JDBC SQL = new JDBC();
+    JDBC SQL;
     String tableName = "items";
+
+    public CatalogController() throws SQLException{
+        SQL = new JDBC();
+    }
 
     @GetMapping("")
     public String cat(Model model) throws SQLException {

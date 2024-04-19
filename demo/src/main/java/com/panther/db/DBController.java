@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class DBController {
    JDBC SQL = new JDBC();
+
+    public DBController() throws SQLException {}
+
    @GetMapping("/findAll")
    @CrossOrigin
    public String findAll(@RequestParam String table) throws SQLException {

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.panther.details.itemDetails;
 import com.panther.details.memberDetails;
+import com.panther.details.checkoutForm;
 
 import org.springframework.web.bind.annotation.SessionAttributes; 
 
@@ -32,7 +33,7 @@ public class adminController {
    JDBC SQL = new JDBC();
    private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
 	@Autowired
-    public adminController(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
+    public adminController(InMemoryUserDetailsManager inMemoryUserDetailsManager) throws SQLException {
        this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
     }
    
@@ -50,9 +51,8 @@ public class adminController {
    
    @PostMapping("/edit/add")
    public String post(@ModelAttribute("item") itemDetails item, Model model) {
-      JDBC sql = new JDBC();
       String message;
-      if(sql.addItem(item))
+      if(SQL.addItem(item))
          message = "Item added Successfully";
       else
          message = "Error: Item not added";
@@ -105,9 +105,8 @@ public class adminController {
 	
 	@PostMapping("/register")
     public String submit(@ModelAttribute("request") memberDetails member, Model model) {
-      JDBC sql = new JDBC();
       String message;
-	  if(sql.addMember(member)) {
+	  if(SQL.addMember(member)) {
          message = "item added successfully";
 		 UserDetails q = User.withDefaultPasswordEncoder()
 				.username(member.getId())
@@ -120,4 +119,40 @@ public class adminController {
          message = "Error: did not add item";
       return "redirect:/admin/member?message=" + message;
 	}
+
+   @GetMapping("/items")
+   public String COlist(Model model) throws SQLException {
+      ResultSet rs = SQL.search("`checkout`");
+       if (rs == null)
+           model.addAttribute("displayItems", new ArrayList<>());
+       else {
+       List<checkoutForm> values = new ArrayList<>();
+       while (rs.next()) {
+         checkoutForm item = new checkoutForm();
+         String itemId = rs.getString("itemId")
+                           .toString()
+                           .trim();
+         item.setItemID(itemId);
+         item.setMemberID(rs.getString("memberId")
+                            .toString()
+                            .trim());
+         item.setCodate(rs.getString("coDate")
+                          .toString()
+                          .trim());
+         item.setReturnDate(rs.getString("returnDate")
+                              .toString()
+                              .trim());
+         item.setItemName(SQL.getItemName(item.getItemID()));
+         String ret = rs.getString("returned").toString().trim();
+         if (ret.equals("1"))
+            item.setReturned("Yes");
+         else
+            item.setReturned("No");
+         values.add(item);
+        }
+       rs.close();
+       model.addAttribute("displayItems", values);
+       }
+       return "items";
+   }
 }

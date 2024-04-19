@@ -10,6 +10,12 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class JDBC {
+    DataSource dataSource = configDataSource.source();
+    Connection conn;
+
+    public JDBC() throws SQLException {
+        conn = dataSource.getConnection();
+    }
 	
 	public boolean addMember (memberDetails member) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
@@ -57,6 +63,11 @@ public class JDBC {
        values[6] = item.getStatus();
        values[7] = item.getRating();
        values[8] = item.getDesc();
+
+       for (int i = 0; i < 9; i++) {
+        if (values[i] == null)
+            values[i] = "";
+       }
        
        if (executeUpdate(command, values))
           return true;
@@ -71,6 +82,15 @@ public class JDBC {
     * 
     */
 
+   public ResultSet findCOItems(String memberID) {
+    String command = "SELECT * FROM checkout WHERE memberId=? AND returned=false";
+		
+		String[] params = {memberID};
+        
+        ResultSet rs = executeQuery(command, params);
+        return rs;
+   }
+
    public boolean addCheckout (checkoutForm request) {
      String command = "INSERT INTO checkOut VALUES "
                       + "(?,?,?,?,?)";
@@ -80,7 +100,7 @@ public class JDBC {
      values[1] = request.getItemID();
      values[2] = LocalDate.now().toString();
      values[3] = "0";
-     values[4] = null;
+     values[4] = LocalDate.now().plusWeeks(2).toString();
 
      if (executeUpdate(command, values))
           return true;
@@ -112,8 +132,6 @@ public class JDBC {
         }
         
         try {
-            DataSource dataSource = configDataSource.source();
-            Connection conn = dataSource.getConnection();
             PreparedStatement ps = conn.prepareStatement(command.substring(0, (command.length() - 5)));
             for (int i = 1; i <= constraints.length; i++) {
                 ps.setString(i, constraints[i - 1][1]);
@@ -179,6 +197,27 @@ public class JDBC {
         return rs;
     }
 
+    public String getItemName(String itemID) throws SQLException{
+       //System.out.println(itemID);
+       String command = "SELECT * FROM items WHERE id=?;";
+       
+       ResultSet rs = null;
+       String itemName = null;
+       try {
+          PreparedStatement ps = conn.prepareStatement(command);
+          ps.setString(1,itemID);
+          rs = ps.executeQuery();
+      } catch (SQLException e) {
+          System.out.println(e);
+      }
+       if (rs.next()) {
+        itemName = rs.getString("itemName")
+        .toString()
+        .trim();
+       }
+       return itemName;
+    }
+
     public ResultSet search (String tableName, String[][] params) {
        String command = "SELECT * FROM " + tableName + " WHERE ";
     
@@ -189,8 +228,6 @@ public class JDBC {
        
        ResultSet rs = null;
        try {
-          DataSource dataSource = configDataSource.source();
-          Connection conn = dataSource.getConnection();
           PreparedStatement ps = conn.prepareStatement(command);
           for (int i = 1; i <= params.length; i++) {
               ps.setString(i, params[i - 1][1]);
@@ -204,8 +241,6 @@ public class JDBC {
     
     public boolean executeUpdate(String command, String[] wildcards) {
        try {
-          DataSource dataSource = configDataSource.source();
-          Connection conn = dataSource.getConnection();
           PreparedStatement ps = conn.prepareStatement(command);
           for (int i = 1; i <= wildcards.length; i++) {
               ps.setString(i, wildcards[i - 1]);
@@ -221,8 +256,6 @@ public class JDBC {
     public ResultSet executeQuery (String command, String[] wildcards) {
        ResultSet rs = null;
        try {
-          DataSource dataSource = configDataSource.source();
-          Connection conn = dataSource.getConnection();
           PreparedStatement ps = conn.prepareStatement(command);
           for (int i = 1; i <= wildcards.length; i++) {
               ps.setString(i, wildcards[i - 1]);

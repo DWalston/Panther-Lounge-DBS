@@ -1,0 +1,26 @@
+<html class="catalog">
+
+<head>
+   <title>Check-Out</title>
+   <script src="../js/script.js"></script>
+   <link rel="stylesheet" href="../css/style.css" />
+   <link rel="favicon" href="../images/lounge_logo_trans.png" />
+</head>
+
+<header>
+   <h1><a href="/index">The Panther Lounge</a></h1>
+</header>
+
+<body>
+   <form th:object="${request}" th:action="@{/checkin/confirm}" method="post">
+   <input placeholder="Item ID" id="itemID" th:field="*{itemID}"/>
+   <div>
+      By submitting this form, I, <input readonly id="name" th:field="*{memberID}"/> agree I am returning
+      <input readonly id="itemName" /> on <input readonly type="date" id="returnDate" th:field="*{returnDate}"/>.
+   </div>
+
+   <input type="submit" value="I agree and understand to these terms" />
+   </form>
+</body>
+
+</html>
