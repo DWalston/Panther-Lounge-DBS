@@ -45,18 +45,39 @@ public class adminController {
    @GetMapping("/edit")
    public String get(@RequestParam(defaultValue = "") String message, Model model) {
       model.addAttribute("message", message);
-      model.addAttribute("add", new itemDetails());
-      model.addAttribute("add", new itemDetails());
+      model.addAttribute("addForm", new itemDetails());
+      model.addAttribute("changeForm", new itemDetails());
+      model.addAttribute("removeForm", new itemDetails());
       return "adding";
    }
    
    @PostMapping("/edit/add")
-   public String post(@ModelAttribute("item") itemDetails item, Model model) {
+   public String postAdd(@ModelAttribute("add") itemDetails item, Model model) {
       String message;
       if(SQL.addItem(item))
          message = "Item added Successfully";
       else
          message = "Error: Item not added";
+      return "redirect:/admin/edit?message=" + message;
+   }
+
+   @PostMapping("/edit/change")
+   public String postEdit(@ModelAttribute("change") itemDetails item, Model model) {
+      String message;
+      if(SQL.editItem(item))
+         message = "Item edited Successfully";
+      else
+         message = "Error: Item not edited";
+      return "redirect:/admin/edit?message=" + message;
+   }
+
+   @PostMapping("/edit/remove")
+   public String postDelete(@ModelAttribute("remove") itemDetails item, Model model) {
+      String message;
+      if(SQL.removeItem(item))
+         message = "Item deleted Successfully";
+      else
+         message = "Error: Item not deleted";
       return "redirect:/admin/edit?message=" + message;
    }
 

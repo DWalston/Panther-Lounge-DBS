@@ -12,6 +12,8 @@
 </header>
 
 <body>
+   
+
    <form th:object="${request}" th:action="@{/checkin/confirm}" method="post">
    <input placeholder="Item ID" id="itemID" th:field="*{itemID}"/>
    <div>

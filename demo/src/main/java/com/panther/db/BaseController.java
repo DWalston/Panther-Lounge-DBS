@@ -89,11 +89,12 @@ public class BaseController {
     
     @PostMapping("/checkout")
     public String submit(@ModelAttribute("request") checkoutForm request, Model model) throws SQLException {
+      String message;
       if(SQL.addCheckout(request))
-         model.addAttribute("message", "item added successfully");
+         message = "Checked out item!";
       else
-         model.addAttribute("message", "Did not add item");
-      return "status";
+         message = "Could not check out, please try again or contact an officer";
+      return "redirect:/checkin?message=" + message;
     }
 
     @GetMapping("/checkin")
@@ -143,10 +144,11 @@ public class BaseController {
 
     @PostMapping("/checkin/confirm")
     public String itemReturn(@ModelAttribute("request") checkoutForm request, Model model) {
-      if(SQL.returnItem(request.getMemberID(), request.getItemID()))
-         model.addAttribute("message", "item added successfully");
-      else
-         model.addAttribute("message", "Did not add item");
-      return "status";
+        String message;
+        if(SQL.returnItem(request.getMemberID(), request.getItemID()))
+           message = "Item returned successfully!";
+        else
+           message = "Could not be returned, please try again or contact an officer";
+      return "redirect:/checkin?message=" + message;
     }
 }

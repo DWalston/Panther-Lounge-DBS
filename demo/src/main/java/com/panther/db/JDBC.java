@@ -9,12 +9,20 @@ import com.panther.details.checkoutForm;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.lang.Integer;
+import java.util.Arrays;
+
 public class JDBC {
-    DataSource dataSource = configDataSource.source();
+    DataSource dataSource;
     Connection conn;
 
-    public JDBC() throws SQLException {
-        conn = dataSource.getConnection();
+    public JDBC() {
+        try {
+            dataSource = configDataSource.source();
+            conn = dataSource.getConnection();
+        } catch (SQLException e){
+            System.out.println(e);
+        }
     }
 	
 	public boolean addMember (memberDetails member) {
@@ -65,8 +73,12 @@ public class JDBC {
        values[8] = item.getDescription();
 
        for (int i = 0; i < 9; i++) {
-        if (values[i] == null)
-            values[i] = "";
+        if (values[i] == null || values[i] == "") {
+            if (i == 7)
+                values[i] = "0";
+            else
+                values[i] = "";
+        }
        }
        
        if (executeUpdate(command, values))
@@ -143,6 +155,94 @@ public class JDBC {
         }
         return true;
    }
+
+   public boolean removeItem (itemDetails item) {
+    String command = "";
+    String[] param = new String[1];
+    if (!item.getId().equals("")) {
+        command = "DELETE FROM items WHERE id=?";
+        param[0] = item.getId();
+    } else if (!item.getName().equals("")) {
+        command = "DELETE FROM items WHERE itemName LIKE ?";
+        param[0] = item.getName();
+    } else {
+        return false;
+    }
+    
+    if (executeUpdate(command,param))
+        return true;
+    else
+        return false;
+    }
+
+    public boolean editItem (itemDetails item) {
+        System.out.println(item.getClub());
+        System.out.println(item.getStatus());
+        String command = "UPDATE items SET ";
+        String[] tempParam = new String[8];
+        int count = 0;
+        
+        if (!item.getType().equals("")) {
+            command = command + "itemType=?, ";
+            tempParam[count] = item.getType();
+            count++;}
+        if (item.getClub() == null) {
+            command = command + "club=?, ";
+            tempParam[count] = item.getClub();
+            count++;}
+        if (!item.getShelf().equals("")) {
+            command = command + "shelf=?, ";
+            tempParam[count] = item.getShelf();
+            count++;}
+        if (!item.getSeries().equals("")) {
+            command = command + "series=?, ";
+            tempParam[count] = item.getSeries();
+            count++;}
+        if (!item.getStatus().equals("")) {
+            command = command + "itemStatus=?, ";
+            tempParam[count] = item.getStatus();
+            count++;}
+        if (!item.getRating().equals("")) {
+            command = command + "rating=?, ";
+            tempParam[count] = item.getRating();
+            count++;}
+        if (!item.getDescription().equals("")) {
+            command = command + "`description`=?, ";
+            tempParam[count] = item.getDescription();
+            count++;}
+
+        if (!item.getId().equals("")) {
+            command = command.substring(0,command.length() - 2) + " WHERE id=?";
+        } else if (!item.getName().equals("")) {
+            command = command.substring(0,command.length() - 2) + " WHERE itemName LIKE CONCAT('%', ?, '%')";
+        } else {
+            return false;
+        }
+
+        System.out.println(command);
+        try {
+            ResultSet rs = null;
+            PreparedStatement ps = conn.prepareStatement(command);
+            for (int i = 1; i <= count; i++) {
+                //System.out.println(tempParam[i - 1]);
+                ps.setString(i, tempParam[i - 1]);
+            }
+
+            if (!item.getId().equals("")) {
+                ps.setInt(count + 1, Integer.parseInt(item.getId()));
+            } else if (!item.getName().equals("")) {
+                ps.setString(count + 1, item.getName());
+            } else {
+                return false;
+            }
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
     
     public boolean editItem (String tableName, String[][] constraints, String[][] changes) {
       String command = "UPDATE " + tableName + " SET ";
@@ -180,7 +280,7 @@ public class JDBC {
         return rs;
      }
 	 public ResultSet itemNameSearch(String itemName) {
-        String command = "SELECT * FROM items WHERE itemName LIKE CONCAT('%', ?, '%')";
+        String command = "SELECT * FROM items WHERE itemName LIKE ?";
 		
 		String[] params = {itemName};
         

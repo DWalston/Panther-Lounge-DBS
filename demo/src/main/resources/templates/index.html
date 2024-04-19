@@ -42,11 +42,11 @@
       <br />
       <a href="catalog">View Entire Catalog</a>
       <a href="catalog/advanced">Advanced Search</a>
+      <a href="checkout" sec:authorize="isAuthenticated()">Check out an item</a>
+      <a href="checkin" sec:authorize="isAuthenticated()">Return an item</a>
 	  <a href="admin" sec:authorize="hasRole('ADMIN')">Admin Page</a>
 
    </form>
-   <a href="checkout" sec:authorize="isAuthenticated()">Check out an item</a>
-   <a href="checkin" sec:authorize="isAuthenticated()">Return an item</a>
 </body>
 
 <footer>

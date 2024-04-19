@@ -12,13 +12,6 @@
 </header>
 
 <body>
-  change embed link to actual site
-  lock this on the right side of the page
-  <embed
-    src="https://htmlpreview.github.io/?https://raw.githubusercontent.com/DWalston/Panther-Lounge-DBS/frontend/public/catalog.html"
-    style="width:500px; height: 300px;">
-
-  
   <h2 th:text="${message}"> 
     <span>message will print here</span> 
   </h2>  
@@ -27,20 +20,22 @@
     Edit Items
   </h2>
   <label for="editItem"> Edit an item </label>
-  <form id="editItem">
-    <input placeholder="ID" type="text" id="editID" />
-    <input placeholder="Name" type="text" id="editName" />
-    <input placeholder="Type" type="text" id="editType" />
-    <select name="Club" id="editClub">
-      <option disabled selected="selected">Club</option>
+  <form id="editItem" th:object="${changeForm}" th:action="@{/admin/edit/change}" method="post">
+    <input placeholder="ID" type="text" id="editID" th:field="*{id}"/>
+    OR
+    <input placeholder="Name" type="text" id="editName" th:field="*{name}"/>
+    <br />
+    <input placeholder="Type" type="text" id="editType" th:field="*{type}"/>
+    <select name="Club" id="editClub" th:field="*{club}">
+      <option value="N/A" disabled selected="selected">Club</option>
       <option value="anime">Anime Club</option>
       <option value="fitssff">FITSSFF</option>
     </select>
-    <input placeholder="Location" type="text" id="editLocation" />
-    <input placeholder="Series" type="text" id="editSeries" />
-    <input placeholder="Status" type="text" id="editStatus" />
-    <input placeholder="Rating" type="text" id="editRating" />
-    <input placeholder="Description" type="text" id="editDescription" />
+    <input placeholder="Location" type="text" id="editLocation" th:field="*{shelf}"/>
+    <input placeholder="Series" type="text" id="editSeries" th:field="*{series}"/>
+    <input placeholder="Status" type="text" id="editStatus" th:field="*{status}"/>
+    <input placeholder="Rating" type="text" id="editRating" th:field="*{rating}"/>
+    <input placeholder="Description" type="text" id="editDescription" th:field="*{description}"/>
     <input type="submit" />
   </form>
 
@@ -49,7 +44,7 @@
   </h2>
 
   <label for="addItem"> Add an item </label>
-  <form id="addItem" th:object="${add}" th:action="@{/admin/edit/add}" method="post">
+  <form id="addItem" th:object="${addForm}" th:action="@{/admin/edit/add}" method="post">
     <input placeholder="ID" type="text" id="addID" th:field="*{id}"/>
     <input placeholder="name" type="text" id="addName" th:field="*{name}"/>
     <input placeholder="type" type="text" id="addType" th:field="*{type}"/>
@@ -76,21 +71,11 @@
   </h2>
 
   <label for="removeItem"> Remove an item </label>
-  <form id="removeItem">
-    <input placeholder="ID" type="text" id="removeID" />
-    <input placeholder="name" type="text" id="removeName" />
-    <input placeholder="type" type="text" id="removeType" />
-    <select name="Club" id="removeClub">
-      <option disabled selected="selected">Club</option>
-      <option value="anime">Anime Club</option>
-      <option value="fitssff">FITSSFF</option>
-    </select>
-    <input placeholder="location" type="text" id="removeLocation" />
-    <input placeholder="series" type="text" id="removeSeries" />
-    <input placeholder="status" type="text" id="removeStatus" />
-    <input placeholder="rating" type="text" id="removeScoreRating" />
-    <input placeholder="description" type="text" id="removeDescription" />
-    <input type="submit" />
+  <form id="removeItem" th:object="${removeForm}" th:action="@{/admin/edit/remove}" method="post">
+    <input placeholder="ID" type="text" id="removeID" th:field="*{id}"/>
+    OR
+    <input placeholder="name" type="text" id="removeName" th:field="*{name}"/>
+    <br /><input type="submit" />
   </form>
 
   <label for="removeMultiple"> Remove multiple items </label>

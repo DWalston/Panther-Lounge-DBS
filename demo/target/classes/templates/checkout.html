@@ -8,7 +8,7 @@
 </head>
 
 <header>
-   <h1><a href="index">The Panther Lounge</a></h1>
+   <h1><a href="/index">The Panther Lounge</a></h1>
    <form th:object="${searchQuery}" th:action="@{/catalog/searchProcess}" method="post">
       <input id="searchBar" type="text" th:field="*{name}"
         placeholder="Search for manga, novels, TTRPG manuals, board games, trading cards..." />
